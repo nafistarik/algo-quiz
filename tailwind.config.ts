@@ -18,14 +18,15 @@ const config = {
   		padding: {
   			DEFAULT: '1rem',
   			xs: '1rem',
-  			sm: '1rem',
-  			lg: '2rem',
-  			xl: '2rem'
+  			sm: '4rem',
+  			lg: '8rem',
+  			xl: '8rem'
   		}
   	},
   	extend: {
   		colors: {
   			border: 'hsl(var(--border))',
+  			shadow: 'hsl(var(--shadow))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
   			background: 'hsl(var(--background))',
@@ -58,11 +59,6 @@ const config = {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
-  			quizRed: '#ea4c37',
-  			quizBlue: '#29A0F3',
-  			quizCream: '#FEFCFA',
-  			quizGray: '#F1EFEE',
-  			quizBeige: '#EDE6DA',
   			chart: {
   				'1': 'hsl(var(--chart-1))',
   				'2': 'hsl(var(--chart-2))',
