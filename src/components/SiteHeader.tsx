@@ -13,6 +13,7 @@ import { useState } from "react";
 import { defaultUser } from "@/lib/data";
 import { ModeToggle } from "./ModeToggle";
 import logo from "@/assets/images/home/logo.png";
+import logoMobile from "@/assets/images/home/logoMobile.png";
 import Image from "next/image";
 
 export function SiteHeader() {
@@ -24,18 +25,18 @@ export function SiteHeader() {
       <div className="container flex h-20 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 ">
           <Image
-            src={logo}
+            src={logoMobile}
             width={1000}
             height={1000}
             alt="Quiz illustration"
-            className="sm:hidden h-16 w-auto"
+            className="sm:hidden h-14 w-auto "
           />
           <Image
             src={logo}
             width={1000}
             height={1000}
             alt="Quiz illustration"
-            className="hidden sm:block h-16 w-auto"
+            className="hidden sm:block h-16 w-auto "
           />
         </Link>
         <div className="flex items-center gap-4">
