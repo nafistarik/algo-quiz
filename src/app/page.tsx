@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
-      <main className="flex-1">
+      <main>
         <HomeHero />
         <div className="container py-8 space-y-10">
           <PopularQuizzes />
@@ -17,4 +17,3 @@ export default function Home() {
     </div>
   )
 }
-

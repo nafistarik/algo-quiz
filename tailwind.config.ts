@@ -1,7 +1,7 @@
 /* eslint-disabled */
 
 import type { Config } from "tailwindcss"
-
+import tailwindcssAnimate from "tailwindcss-animate";
 const config = {
   darkMode: ["class"],
   content: [
@@ -66,6 +66,10 @@ const config = {
           "4": "var(--chart-4)",
           "5": "var(--chart-5)",
         },
+        buttonHoverDark: "#016093",
+        buttonHoverLight: "#cf3d2f",
+        borderColor: "#80808033",
+        toggleBg: "#6b728033",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -96,7 +100,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;
 
 export default config;

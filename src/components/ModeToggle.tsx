@@ -27,7 +27,7 @@ export function ModeToggle() {
       className="relative h-8 w-14 rounded-full bg-muted p-1"
     >
       <div
-        className={`flex h-6 w-6 items-center justify-center rounded-full bg-gray-500/20 transition-transform duration-300 ease-in-out  ${
+        className={`flex h-6 w-6 items-center justify-center rounded-full bg-toggleBg transition-transform duration-300 ease-in-out  ${
           theme === "dark" ? "translate-x-6" : "translate-x-0"
         }`}
       >

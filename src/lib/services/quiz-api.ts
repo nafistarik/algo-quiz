@@ -106,54 +106,54 @@ export const quizApi = createApi({
         },
       ],
     }),
-    getQuizById: builder.query<Quiz, string>({
-      query: (id) => `/quizzes/${id}`,
-      // Mock data for development
-      transformResponse: (_, __, arg) => ({
-        id: arg,
-        title: "Technology Quiz",
-        description: "Test your knowledge of technology",
-        status: "published",
-        timeLimit: 10,
-        createdAt: new Date().toISOString(),
-        questions: [
-          {
-            id: "q1",
-            text: "What does CPU stand for?",
-            options: [
-              { id: "a", text: "Central Processing Unit" },
-              { id: "b", text: "Computer Personal Unit" },
-              { id: "c", text: "Central Processor Unifier" },
-              { id: "d", text: "Central Process Utility" },
-            ],
-            correctAnswerId: "a",
-          },
-          {
-            id: "q2",
-            text: "Which company created the iPhone?",
-            options: [
-              { id: "a", text: "Google" },
-              { id: "b", text: "Microsoft" },
-              { id: "c", text: "Apple" },
-              { id: "d", text: "Samsung" },
-            ],
-            correctAnswerId: "c",
-          },
-          {
-            id: "q3",
-            text: "What year was the first website created?",
-            options: [
-              { id: "a", text: "1985" },
-              { id: "b", text: "1991" },
-              { id: "c", text: "1995" },
-              { id: "d", text: "2000" },
-            ],
-            correctAnswerId: "b",
-            explanation: "The first website was created in 1991 by Tim Berners-Lee.",
-          },
-        ],
-      }),
-    }),
+    // getQuizById: builder.query<Quiz, string>({
+    //   query: (id) => `/quizzes/${id}`,
+    //   // Mock data for development
+    //   transformResponse: (_, __, arg) => ({
+    //     id: arg,
+    //     title: "Technology Quiz",
+    //     description: "Test your knowledge of technology",
+    //     status: "published",
+    //     timeLimit: 10,
+    //     createdAt: new Date().toISOString(),
+    //     questions: [
+    //       {
+    //         id: "q1",
+    //         text: "What does CPU stand for?",
+    //         options: [
+    //           { id: "a", text: "Central Processing Unit" },
+    //           { id: "b", text: "Computer Personal Unit" },
+    //           { id: "c", text: "Central Processor Unifier" },
+    //           { id: "d", text: "Central Process Utility" },
+    //         ],
+    //         correctAnswerId: "a",
+    //       },
+    //       {
+    //         id: "q2",
+    //         text: "Which company created the iPhone?",
+    //         options: [
+    //           { id: "a", text: "Google" },
+    //           { id: "b", text: "Microsoft" },
+    //           { id: "c", text: "Apple" },
+    //           { id: "d", text: "Samsung" },
+    //         ],
+    //         correctAnswerId: "c",
+    //       },
+    //       {
+    //         id: "q3",
+    //         text: "What year was the first website created?",
+    //         options: [
+    //           { id: "a", text: "1985" },
+    //           { id: "b", text: "1991" },
+    //           { id: "c", text: "1995" },
+    //           { id: "d", text: "2000" },
+    //         ],
+    //         correctAnswerId: "b",
+    //         explanation: "The first website was created in 1991 by Tim Berners-Lee.",
+    //       },
+    //     ],
+    //   }),
+    // }),
     submitQuiz: builder.mutation<{ resultId: string }, { quizId: string; answers: Record<string, string> }>({
       query: (data) => ({
         url: "/quizzes/submit",
@@ -337,7 +337,7 @@ export const quizApi = createApi({
 export const {
   useGetPopularQuizzesQuery,
   useGetRecentlyPlayedQuery,
-  useGetQuizByIdQuery,
+  // useGetQuizByIdQuery,
   useSubmitQuizMutation,
   useGetQuizResultQuery,
 //   useGetLeaderboardQuery,

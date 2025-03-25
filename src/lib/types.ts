@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image"
+
 export interface User {
     id: string
     name: string
@@ -14,12 +16,11 @@ export interface User {
     id: string
     title: string
     description: string
-    status: "published" | "draft"
-    timeLimit: number
+    status: string
+    questionCount: number
     questions: Question[]
     createdAt: string
-    color?: string
-    icon?: string
+    thumbnail? : string | StaticImageData | null
   }
   
   export interface Question {

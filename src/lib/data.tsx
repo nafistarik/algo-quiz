@@ -1,82 +1,52 @@
-// Dummy data for the application
+import defaultThumnail from "@/assets/images/home/default-thumbnail.png";
+import defaultThumnail2 from "@/assets/images/home/default-thumbnail2.jpg";
 
 export const popularQuizzes = [
-    {
-      id: "1",
-      title: "Technology",
-      description:
-        "Explore the world of technology with this interesting Technology Quiz. Challenge if you dare to put your knowledge to the test!",
-      status: "published",
-      timeLimit: 10,
-      questionCount: 10,
-      questions: [],
-      createdAt: new Date().toISOString(),
-      color: "#ea4c37",
-    },
-    {
-      id: "2",
-      title: "Science",
-      description: "Test your knowledge of scientific principles and discoveries",
-      status: "published",
-      timeLimit: 15,
-      questionCount: 15,
-      questions: [],
-      createdAt: new Date().toISOString(),
-      color: "#29A0F3",
-    },
-    {
-      id: "3",
-      title: "History",
-      description: "Journey through time with questions about major historical events",
-      status: "published",
-      timeLimit: 12,
-      questionCount: 12,
-      questions: [],
-      createdAt: new Date().toISOString(),
-      color: "#6366f1",
-    },
-    {
-      id: "4",
-      title: "Geography",
-      description: "Explore countries, capitals, and natural wonders",
-      status: "published",
-      timeLimit: 8,
-      questionCount: 8,
-      questions: [],
-      createdAt: new Date().toISOString(),
-      color: "#ec4899",
-    },
-  ]
-  
-  export const recentlyPlayedQuizzes = [
-    {
-      id: "1",
-      title: "Social sciences",
-      score: 8,
-      totalQuestions: 10,
-      date: new Date().toISOString(),
-      color: "#ea4c37",
-      icon: "🧠",
-    },
-    {
-      id: "2",
-      title: "Mathematics",
-      score: 7,
-      totalQuestions: 10,
-      date: new Date(Date.now() - 86400000).toISOString(),
-      color: "#29A0F3",
-      icon: "🔢",
-    },
-    {
-      id: "3",
-      title: "Literature",
-      score: 9,
-      totalQuestions: 10,
-      date: new Date(Date.now() - 172800000).toISOString(),
-      color: "#6366f1",
-      icon: "📚",
-    },
-  ]
+  {
+    id: "1",
+    title: "Sorting Algorithms",
+    description:
+      "Test your knowledge of Quick Sort, Merge Sort, and Bubble Sort. Pick the best algorithm for each case!",
+    status: "published",
+    questionCount: 12,
+    questions: [],
+    createdAt: new Date().toISOString(),
+    thumbnail: defaultThumnail,
+  },
+  {
+    id: "2",
+    title: "Graph Theory",
+    description:
+      "Explore graphs, BFS, DFS, and shortest path algorithms. Strengthen your problem-solving skills!",
+    status: "published",
+    questionCount: 15,
+    questions: [],
+    createdAt: new Date().toISOString(),
+    thumbnail: defaultThumnail2,
+  },
+  {
+    id: "3",
+    title: "Dynamic Programming",
+    description:
+      "Master DP concepts like memoization and tabulation. Solve problems efficiently!",
+    status: "published",
+    questionCount: 10,
+    questions: [],
+    createdAt: new Date().toISOString(),
+    thumbnail: defaultThumnail,
+  },
+  {
+    id: "4",
+    title: "Data Structures Basics",
+    description:
+      "Learn about arrays, linked lists, stacks, and trees. Build a strong foundation!",
+    status: "published",
+    questionCount: 14,
+    questions: [],
+    createdAt: new Date().toISOString(),
+    thumbnail: null,
+  },
+];
   
   export const quizDetails = {
     id: "1",

@@ -18,7 +18,7 @@
     --muted-foreground: #767676;
     --accent: #e6d7a3;
     --accent-foreground: #1b1b1e;
-    --destructive: #d32f2f;
+    --destructive: #EC4636;
     --destructive-foreground: #fafafa;
     --border: #e6e0dc;
     --shadow: #e6e0dc;
@@ -49,7 +49,7 @@
     --muted-foreground: #a3a3a3;
     --accent: #262626;
     --accent-foreground: #fafafa;
-    --destructive: #a31616;
+    --destructive: #EC4636;
     --destructive-foreground: #fafafa;
     --border: #262626;
     --shadow: #262626;
@@ -65,4 +65,35 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #efcdcb, #ef857b);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ef857b, #ef857b);
+}
+
+/* Scrollbar styles for dark mode */
+.dark ::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #01263b, #015a8a);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #015a8a, #015a8a);
 }

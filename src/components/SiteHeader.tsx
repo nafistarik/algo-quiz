@@ -21,22 +21,22 @@ export function SiteHeader() {
   const user = defaultUser;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-20 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 ">
+    <header className="sticky top-0 z-50 w-full border-b border-borderColor backdrop-blur">
+      <div className="container flex h-24 items-center justify-between">
+        <Link href="/">
           <Image
             src={logoMobile}
             width={1000}
             height={1000}
-            alt="Quiz illustration"
-            className="sm:hidden h-14 w-auto "
+            alt="Quiz logo"
+            className="sm:hidden h-14 w-auto"
           />
           <Image
             src={logo}
             width={1000}
             height={1000}
-            alt="Quiz illustration"
-            className="hidden sm:block h-16 w-auto "
+            alt="Quiz logo"
+            className="hidden sm:block h-16 w-auto"
           />
         </Link>
         <div className="flex items-center gap-4">
