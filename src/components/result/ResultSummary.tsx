@@ -1,51 +1,62 @@
-/* eslint-disable */
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { BarChart2 } from "lucide-react";
+import EmptyStateMessage from "../EmptyStateMessage";
+import { QuizResult } from "@/lib/types";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Trophy, BarChart2 } from "lucide-react"
+export function ResultSummary({ result }: {result : QuizResult | null}) {
+  if (!result)
+    return (
+      <EmptyStateMessage message="No results available. Try taking a quiz first!" />
+    );
 
-interface ResultSummaryProps {
-  result?: any
-}
-
-export function ResultSummary({ result }: ResultSummaryProps) {
-  if (!result) return null
-
-  const percentage = Math.round((result.correctAnswers / result.totalQuestions) * 100)
+  const percentage = Math.round(
+    (result.correctAnswers / result.totalQuestions) * 100
+  )
 
   return (
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           Quiz Summary
-          <Trophy className="h-5 w-5 text-yellow-500" />
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="flex justify-center">
+        <div className="flex justify-center text-primary">
           <div className="relative w-40 h-40">
-            <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              className="w-full h-full"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <circle
                 className="text-muted stroke-current"
-                strokeWidth="10"
+                strokeWidth="8"
                 cx="50"
                 cy="50"
-                r="40"
+                r="45"
                 fill="transparent"
               />
               <circle
                 className="text-primary stroke-current"
-                strokeWidth="10"
+                strokeWidth="8"
                 strokeLinecap="round"
                 cx="50"
                 cy="50"
-                r="40"
+                r="45"
                 fill="transparent"
                 strokeDasharray={`${percentage * 2.51} 251.2`}
                 transform="rotate(-90 50 50)"
               />
-              <text x="50" y="50" dominantBaseline="middle" textAnchor="middle" className="text-3xl font-bold">
+              <text
+                x="50"
+                y="50"
+                dominantBaseline="middle"
+                textAnchor="middle"
+                className="text-2xl font-bold "
+                fill="currentColor"
+              >
                 {percentage}%
               </text>
             </svg>
@@ -63,31 +74,27 @@ export function ResultSummary({ result }: ResultSummaryProps) {
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Correct Answers</span>
-            <span className="font-medium text-green-500">{result.correctAnswers}</span>
+            <span className="font-medium text-green-500">
+              {result.correctAnswers}
+            </span>
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Wrong Answers</span>
-            <span className="font-medium text-red-500">{result.wrongAnswers}</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-muted-foreground">Time Taken</span>
-            <span className="font-medium">{result.timeTaken}</span>
+            <span className="font-medium text-red-500">
+              {result.wrongAnswers}
+            </span>
           </div>
         </div>
 
-        <div className="pt-4 space-y-2">
+        <div className="pt-4 ">
           <Button className="w-full" asChild>
             <Link href={`/leaderboard/${result.quizId}`}>
               <BarChart2 className="mr-2 h-4 w-4" />
               View Leaderboard
             </Link>
           </Button>
-          <Button variant="outline" className="w-full" asChild>
-            <Link href={`/quiz/${result.quizId}`}>Try Again</Link>
-          </Button>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-

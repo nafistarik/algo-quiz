@@ -13,7 +13,7 @@ export function HomeHero() {
           height={1000}
           className="hidden xl:block z-0 w-auto h-[90%] absolute top-0 left-0 rotate-180"
         />
-        <div className=" flex flex-col items-center text-center z-50 py-32 ">
+        <div className=" flex flex-col items-center text-center z-50 py-12 sm:py-20 md:py-32">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Welcome to <span className="hidden sm:inline">🧠</span> AlgoQuiz!
           </h1>

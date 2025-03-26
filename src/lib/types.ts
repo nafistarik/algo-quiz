@@ -31,7 +31,6 @@ export interface User {
       text: string
     }[]
     correctAnswerId: string
-    explanation?: string
     userAnswerId?: string
     isCorrect?: boolean
   }
@@ -43,7 +42,6 @@ export interface User {
     totalQuestions: number
     correctAnswers: number
     wrongAnswers: number
-    timeTaken: string
     questions: Question[]
   }
   

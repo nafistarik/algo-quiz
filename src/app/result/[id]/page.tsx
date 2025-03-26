@@ -1,30 +1,25 @@
-/* eslint-disable */
+"use client";
 
-"use client"
-
-import { useParams } from "next/navigation"
-import { Skeleton } from "@/components/ui/skeleton"
-import { useEffect, useState } from "react"
-import { quizResult } from "@/lib/data"
-import { SiteHeader } from "@/components/SiteHeader"
-import { ResultSummary } from "@/components/result/ResultSummary"
-import { DetailedResults } from "@/components/result/DetailedResults"
+import { Skeleton } from "@/components/ui/skeleton";
+import { useEffect, useState } from "react";
+import { quizResult } from "@/lib/data";
+import { SiteHeader } from "@/components/SiteHeader";
+import { ResultSummary } from "@/components/result/ResultSummary";
+import { DetailedResults } from "@/components/result/DetailedResults";
+import { QuizResult } from "@/lib/types";
 
 export default function ResultPage() {
-  const params = useParams()
-  const resultId = params.id as string
-  const [result, setResult] = useState<any>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [result, setResult] = useState<QuizResult | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading
     const timer = setTimeout(() => {
-      setResult(quizResult)
-      setIsLoading(false)
-    }, 1000)
+      setResult(quizResult);
+      setIsLoading(false);
+    }, 1000);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -55,6 +50,5 @@ export default function ResultPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }
-

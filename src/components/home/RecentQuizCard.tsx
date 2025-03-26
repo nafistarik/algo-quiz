@@ -11,14 +11,14 @@ export default function RecentQuizCard({ quiz }: { quiz: Quiz }) {
     <Card key={quiz.id} className="overflow-hidden shadow-sm">
       <CardContent className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="h-12 w-12 rounded-full flex items-center justify-center text-white overflow-hidden shadow-2xl">
+          <div className="h-12 !min-w-12 rounded-full flex items-center justify-center text-white overflow-hidden shadow-2xl">
             {quiz.thumbnail ? (
               <Image
                 src={quiz.thumbnail}
                 alt="Quiz Thumbnail"
                 height={1000}
                 width={1000}
-                className="h-full w-full object-cover scale-150 transition-all duration-500 ease-in-out"
+                className="h-12 w-12 object-cover scale-150 transition-all duration-500 ease-in-out"
               />
             ) : (
               <div className="h-full w-full bg-gradient-to-r from-primary to-secondary"></div>
@@ -27,14 +27,14 @@ export default function RecentQuizCard({ quiz }: { quiz: Quiz }) {
           <div>
             <h3 className="font-medium">{quiz.title}</h3>
             <p className="text-sm text-muted-foreground">
-              Total Questions: {quiz.questionCount}
+              <span className="hidden sm:inline">Total</span> Questions: {quiz.questionCount}
             </p>
           </div>
         </div>
         <Button variant="outline" size="sm" asChild>
           <Link href={`/quiz/${quiz.id}`}>
-            View Result
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <span className="hidden sm:block" >View</span> Result
+            <ArrowRight className="ml-2 h-4 w-4 hidden sm:block" />
           </Link>
         </Button>
       </CardContent>
