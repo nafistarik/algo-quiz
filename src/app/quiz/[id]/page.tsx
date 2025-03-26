@@ -11,7 +11,7 @@ export default function QuizPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [timeLeft, setTimeLeft] = useState(600);
+  const [timeLeft, setTimeLeft] = useState(quiz?.questionCount * 60);
 
   useEffect(() => {
     const timer = setTimeout(() => {

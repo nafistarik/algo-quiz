@@ -32,7 +32,7 @@ export function QuizSidebar({ quiz, timeLeft, currentQuestionIndex, totalQuestio
               {formatTime(timeLeft)}
             </span>
           </div>
-          <Progress value={(timeLeft / (quiz.timeLimit * 60)) * 100} className="h-2" />
+          <Progress value={(timeLeft / (totalQuestions * 60)) * 100} className="h-2" />
         </div>
 
         <div className="space-y-2">
