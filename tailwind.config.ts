@@ -68,6 +68,8 @@ const config = {
         },
         buttonHoverDark: "#016093",
         buttonHoverLight: "#cf3d2f",
+        softPrimaryDark: "#5fa6cd",
+        softPrimaryLight: "#ed958d",
         borderColor: "#80808033",
         toggleBg: "#6b728033",
       },

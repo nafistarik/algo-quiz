@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 export function LoadingQuiz() {
   return (
     <div className="flex min-h-screen flex-col md:flex-row bg-background">
-      <div className="w-full md:w-80 bg-primary/10 p-6 flex flex-col md:h-screen">
+      <div className="w-full md:w-80 bg-muted p-6 flex flex-col md:h-screen">
         <Skeleton className="h-8 w-40 mb-8" />
         <div className="space-y-6 flex-1">
           <div className="space-y-2">
@@ -21,7 +21,7 @@ export function LoadingQuiz() {
         </div>
       </div>
       <div className="flex-1 p-6 md:p-10">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl">
           <div className="mb-8">
             <Skeleton className="h-4 w-40" />
             <Skeleton className="h-8 w-full mt-2" />

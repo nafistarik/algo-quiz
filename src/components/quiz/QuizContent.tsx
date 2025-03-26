@@ -28,7 +28,7 @@ export function QuizContent({
 }: QuizContentProps) {
   return (
     <div className="flex-1 p-6 md:p-10">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl">
         <div className="mb-8">
           <span className="text-sm text-muted-foreground">
             Question {questionIndex + 1} of {totalQuestions}
@@ -38,12 +38,12 @@ export function QuizContent({
 
         <Card>
           <CardContent className="pt-6">
-            <RadioGroup value={selectedAnswer} onValueChange={onAnswerSelect} className="space-y-4">
+            <RadioGroup value={selectedAnswer} onValueChange={onAnswerSelect} className="space-y-4 ">
               {question.options.map((option: any) => (
                 <div
                   key={option.id}
-                  className={`flex items-center space-x-2 rounded-lg border p-4 transition-colors ${
-                    selectedAnswer === option.id ? "border-primary bg-primary/5" : "hover:bg-muted/50"
+                  className={`flex items-center space-x-2 rounded-lg border py-2 px-4 transition-all duration-300 ease-in-out ${
+                    selectedAnswer === option.id ? "border-primary bg-primary" : "hover:bg-muted"
                   }`}
                 >
                   <RadioGroupItem value={option.id} id={option.id} className="mt-0" />

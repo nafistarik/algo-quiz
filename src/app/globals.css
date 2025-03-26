@@ -67,6 +67,20 @@
   }
 }
 
+@keyframes loadingAnimation {
+  0% { width: 0; opacity: 0; }
+  50% { width: 100%; opacity: 1; }
+  100% { width: 0; opacity: 0; }
+}
+
+.loading-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: loadingAnimation 5s linear infinite;
+}
+
 ::-webkit-scrollbar {
   width: 12px;
   height: 8px;
