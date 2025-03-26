@@ -11,57 +11,57 @@ export const quizApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes: ["Quiz", "Result", "Leaderboard"],
   endpoints: (builder) => ({
-    getPopularQuizzes: builder.query<Quiz[], void>({
-      query: () => "/quizzes/popular",
-      // Mock data for development
-      transformResponse: () => [
-        {
-          id: "1",
-          title: "Technology",
-          description:
-            "Explore the world of technology with this interesting Technology Quiz. Challenge if you dare to put your knowledge to the test!",
-          status: "published",
-          timeLimit: 10,
-          questionCount: 10,
-          questions: [],
-          createdAt: new Date().toISOString(),
-          color: "#f97316",
-        },
-        {
-          id: "2",
-          title: "Science",
-          description: "Test your knowledge of scientific principles and discoveries",
-          status: "published",
-          timeLimit: 15,
-          questionCount: 15,
-          questions: [],
-          createdAt: new Date().toISOString(),
-          color: "#10b981",
-        },
-        {
-          id: "3",
-          title: "History",
-          description: "Journey through time with questions about major historical events",
-          status: "published",
-          timeLimit: 12,
-          questionCount: 12,
-          questions: [],
-          createdAt: new Date().toISOString(),
-          color: "#6366f1",
-        },
-        {
-          id: "4",
-          title: "Geography",
-          description: "Explore countries, capitals, and natural wonders",
-          status: "published",
-          timeLimit: 8,
-          questionCount: 8,
-          questions: [],
-          createdAt: new Date().toISOString(),
-          color: "#ec4899",
-        },
-      ],
-    }),
+    // getPopularQuizzes: builder.query<Quiz[], void>({
+    //   query: () => "/quizzes/popular",
+    //   // Mock data for development
+    //   transformResponse: () => [
+    //     {
+    //       id: "1",
+    //       title: "Technology",
+    //       description:
+    //         "Explore the world of technology with this interesting Technology Quiz. Challenge if you dare to put your knowledge to the test!",
+    //       status: "published",
+    //       timeLimit: 10,
+    //       questionCount: 10,
+    //       questions: [],
+    //       createdAt: new Date().toISOString(),
+    //       color: "#f97316",
+    //     },
+    //     {
+    //       id: "2",
+    //       title: "Science",
+    //       description: "Test your knowledge of scientific principles and discoveries",
+    //       status: "published",
+    //       timeLimit: 15,
+    //       questionCount: 15,
+    //       questions: [],
+    //       createdAt: new Date().toISOString(),
+    //       color: "#10b981",
+    //     },
+    //     {
+    //       id: "3",
+    //       title: "History",
+    //       description: "Journey through time with questions about major historical events",
+    //       status: "published",
+    //       timeLimit: 12,
+    //       questionCount: 12,
+    //       questions: [],
+    //       createdAt: new Date().toISOString(),
+    //       color: "#6366f1",
+    //     },
+    //     {
+    //       id: "4",
+    //       title: "Geography",
+    //       description: "Explore countries, capitals, and natural wonders",
+    //       status: "published",
+    //       timeLimit: 8,
+    //       questionCount: 8,
+    //       questions: [],
+    //       createdAt: new Date().toISOString(),
+    //       color: "#ec4899",
+    //     },
+    //   ],
+    // }),
     getRecentlyPlayed: builder.query<
       {
         id: string
@@ -335,7 +335,7 @@ export const quizApi = createApi({
 })
 
 export const {
-  useGetPopularQuizzesQuery,
+  // useGetPopularQuizzesQuery,
   useGetRecentlyPlayedQuery,
   // useGetQuizByIdQuery,
   useSubmitQuizMutation,

@@ -12,6 +12,7 @@ export const popularQuizzes = [
     questions: [],
     createdAt: new Date().toISOString(),
     thumbnail: defaultThumnail,
+    totalAttempts: 1,
   },
   {
     id: "2",
@@ -23,6 +24,7 @@ export const popularQuizzes = [
     questions: [],
     createdAt: new Date().toISOString(),
     thumbnail: defaultThumnail2,
+    totalAttempts: 0,
   },
   {
     id: "3",
@@ -34,6 +36,7 @@ export const popularQuizzes = [
     questions: [],
     createdAt: new Date().toISOString(),
     thumbnail: defaultThumnail,
+    totalAttempts: 0,
   },
   {
     id: "4",
@@ -45,6 +48,7 @@ export const popularQuizzes = [
     questions: [],
     createdAt: new Date().toISOString(),
     thumbnail: null,
+    totalAttempts: 1,
   },
 ];
 
@@ -53,10 +57,9 @@ export const quizDetails = {
   title: "Data Structures Basics",
   description:
     "Learn about arrays, linked lists, stacks, and trees. Build a strong foundation!",
-  status: "published",
   createdAt: new Date().toISOString(),
   questionCount: 4,
-  thumbnail: null,
+  totalMarks: 30,
   questions: [
     {
       id: "q1",
@@ -67,9 +70,7 @@ export const quizDetails = {
         { id: "c", text: "Linked List" },
         { id: "d", text: "Array" },
       ],
-      correctAnswerId: "b",
-      explanation:
-        "A stack follows the LIFO principle, meaning the last element added is the first to be removed.",
+      marks: 5,
     },
     {
       id: "q2",
@@ -80,9 +81,7 @@ export const quizDetails = {
         { id: "c", text: "Array" },
         { id: "d", text: "Graph" },
       ],
-      correctAnswerId: "a",
-      explanation:
-        "Recursion uses the call stack internally to track function calls.",
+      marks: 10,
     },
     {
       id: "q3",
@@ -93,9 +92,7 @@ export const quizDetails = {
         { id: "c", text: "O(log n)" },
         { id: "d", text: "O(n^2)" },
       ],
-      correctAnswerId: "a",
-      explanation:
-        "Array indexing allows direct access to elements in O(1) time.",
+      marks: 10,
     },
     {
       id: "q4",
@@ -106,9 +103,7 @@ export const quizDetails = {
         { id: "c", text: "Linked List" },
         { id: "d", text: "Graph" },
       ],
-      correctAnswerId: "b",
-      explanation:
-        "A heap is commonly used to implement a priority queue efficiently.",
+      marks: 5,
     },
   ],
 };

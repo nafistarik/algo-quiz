@@ -21,6 +21,7 @@ export interface User {
     questions: Question[]
     createdAt: string
     thumbnail? : string | StaticImageData | null
+    totalAttempts: number
   }
   
   export interface Question {

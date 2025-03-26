@@ -47,7 +47,7 @@ export default function QuizCard({ quiz }: { quiz: Quiz }) {
             </div>
             <CardFooter className="p-4 pt-0">
               <Button className="w-full" asChild>
-                <Link href={`/quiz/${quiz.id}`}>Start Quiz</Link>
+                <Link href={`/quiz/${quiz.id}`}>{quiz?.totalAttempts > 0 ? "View Result" : "Start Quiz"}</Link>
               </Button>
             </CardFooter>
           </div>

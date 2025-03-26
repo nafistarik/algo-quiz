@@ -13,7 +13,7 @@ export function RecentlyPlayed() {
         {quizzes.length === 0 ? (
           <EmptyStateMessage message="You haven't attempted any quizzes yet! Give one a try!" />
         ) : (
-          quizzes?.map((quiz) => <RecentQuizCard quiz={quiz} key={quiz.id} />)
+          quizzes?.filter((quiz)=>quiz?.totalAttempts > 0).map((quiz) => <RecentQuizCard quiz={quiz} key={quiz.id} />)
         )}
       </div>
     </section>
