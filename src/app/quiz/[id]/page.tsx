@@ -5,7 +5,6 @@ import { quizDetails } from "@/lib/data";
 import { LoadingQuiz } from "@/components/quiz/LoadingQuiz";
 import { QuizSidebar } from "@/components/quiz/QuizSidebar";
 import { QuizContent } from "@/components/quiz/QuizContent";
-import { SiteHeader } from "@/components/SiteHeader";
 
 export default function QuizPage() {
   const quiz = quizDetails;
@@ -65,8 +64,6 @@ export default function QuizPage() {
   const answeredCount = Object.keys(answers).length;
 
   return (
-    <>
-      <SiteHeader />
       <div className="flex flex-col md:flex-row">
         <QuizSidebar
           quiz={quiz}
@@ -87,6 +84,5 @@ export default function QuizPage() {
           onPrevQuestion={handlePrevQuestion}
         />
       </div>
-    </>
   );
 }
