@@ -108,67 +108,118 @@ export const quizDetails = {
   ],
 };
 
-export const quizResult = {
-  id: "result-4",
-  quizId: "4",
-  quizTitle: "Data Structures Basics",
-  totalQuestions: 4,
-  correctAnswers: 3,
-  wrongAnswers: 1,
-  questions: [
+// export const quizResult = {
+//   id: "result-4",
+//   quizId: "4",
+//   quizTitle: "Data Structures Basics",
+//   totalQuestions: 4,
+//   correctAnswers: 3,
+//   wrongAnswers: 1,
+//   questions: [
+//     {
+//       id: "q1",
+//       text: "Which data structure follows the Last In, First Out (LIFO) principle?",
+//       options: [
+//         { id: "a", text: "Queue" },
+//         { id: "b", text: "Stack" },
+//         { id: "c", text: "Linked List" },
+//         { id: "d", text: "Array" },
+//       ],
+//       correctAnswerId: "b",
+//       userAnswerId: "b",
+//       isCorrect: true,
+//     },
+//     {
+//       id: "q2",
+//       text: "Which data structure is best suited for implementing recursion?",
+//       options: [
+//         { id: "a", text: "Stack" },
+//         { id: "b", text: "Queue" },
+//         { id: "c", text: "Array" },
+//         { id: "d", text: "Graph" },
+//       ],
+//       correctAnswerId: "a",
+//       userAnswerId: "a",
+//       isCorrect: true,
+//     },
+//     {
+//       id: "q3",
+//       text: "What is the time complexity of accessing an element in an array by index?",
+//       options: [
+//         { id: "a", text: "O(1)" },
+//         { id: "b", text: "O(n)" },
+//         { id: "c", text: "O(log n)" },
+//         { id: "d", text: "O(n^2)" },
+//       ],
+//       correctAnswerId: "a",
+//       userAnswerId: "b",
+//       isCorrect: false,
+//     },
+//     {
+//       id: "q4",
+//       text: "Which data structure is used to implement a priority queue?",
+//       options: [
+//         { id: "a", text: "Stack" },
+//         { id: "b", text: "Heap" },
+//         { id: "c", text: "Linked List" },
+//         { id: "d", text: "Graph" },
+//       ],
+//       correctAnswerId: "b",
+//       userAnswerId: "b",
+//       isCorrect: true,
+//     },
+//   ],
+// };
+
+export const quizResult1 = {
+  attempt_id: "result-4",
+  quiz: {
+    id: "4",
+    title: "Data Structures Basics",
+    total_marks: 20,
+  },
+  percentage: "75.00",
+  submitted_answers: [
     {
-      id: "q1",
-      text: "Which data structure follows the Last In, First Out (LIFO) principle?",
-      options: [
-        { id: "a", text: "Queue" },
-        { id: "b", text: "Stack" },
-        { id: "c", text: "Linked List" },
-        { id: "d", text: "Array" },
-      ],
-      correctAnswerId: "b",
-      userAnswerId: "b",
-      isCorrect: true,
+      question_id: "q1",
+      answer: "Stack",
     },
     {
-      id: "q2",
-      text: "Which data structure is best suited for implementing recursion?",
-      options: [
-        { id: "a", text: "Stack" },
-        { id: "b", text: "Queue" },
-        { id: "c", text: "Array" },
-        { id: "d", text: "Graph" },
-      ],
-      correctAnswerId: "a",
-      userAnswerId: "a",
-      isCorrect: true,
+      question_id: "q2",
+      answer: "Stack",
     },
     {
-      id: "q3",
-      text: "What is the time complexity of accessing an element in an array by index?",
-      options: [
-        { id: "a", text: "O(1)" },
-        { id: "b", text: "O(n)" },
-        { id: "c", text: "O(log n)" },
-        { id: "d", text: "O(n^2)" },
-      ],
-      correctAnswerId: "a",
-      userAnswerId: "b",
-      isCorrect: false,
+      question_id: "q3",
+      answer: "O(n)",
     },
     {
-      id: "q4",
-      text: "Which data structure is used to implement a priority queue?",
-      options: [
-        { id: "a", text: "Stack" },
-        { id: "b", text: "Heap" },
-        { id: "c", text: "Linked List" },
-        { id: "d", text: "Graph" },
-      ],
-      correctAnswerId: "b",
-      userAnswerId: "b",
-      isCorrect: true,
+      question_id: "q4",
+      answer: "Heap",
     },
   ],
+  correct_answers: [
+    {
+      question_id: "q1",
+      answer: "Stack",
+      marks: 5,
+    },
+    {
+      question_id: "q2",
+      answer: "Stack",
+      marks: 5,
+    },
+    {
+      question_id: "q3",
+      answer: "O(1)",
+      marks: 0,
+    },
+    {
+      question_id: "q4",
+      answer: "Heap",
+      marks: 5,
+    },
+  ],
+  submitted_at: "2025-03-26T10:00:00.000Z",
 };
 
 export const leaderboardData = {

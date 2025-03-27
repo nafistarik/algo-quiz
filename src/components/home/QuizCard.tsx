@@ -8,6 +8,7 @@ import Link from "next/link";
 import { Quiz } from "@/lib/types";
 
 export default function QuizCard({ quiz }: { quiz: Quiz }) {
+
   return (
     <div>
       <Card key={quiz.id} className="overflow-hidden h-full flex flex-col">
@@ -47,7 +48,7 @@ export default function QuizCard({ quiz }: { quiz: Quiz }) {
             </div>
             <CardFooter className="p-4 pt-0">
               <Button className="w-full" asChild>
-                <Link href={`/quiz/${quiz.id}`}>{quiz?.totalAttempts > 0 ? "View Result" : "Start Quiz"}</Link>
+                <Link href={(quiz.totalAttempts ?? 0) > 0 ? `/result/${quiz.id}` : `/quiz/${quiz.id}` }>{(quiz.totalAttempts ?? 0) > 0 ? "View Result" : "Start Quiz"}</Link>
               </Button>
             </CardFooter>
           </div>

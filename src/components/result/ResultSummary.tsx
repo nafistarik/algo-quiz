@@ -3,24 +3,18 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { BarChart2 } from "lucide-react";
 import EmptyStateMessage from "../EmptyStateMessage";
-import { QuizResult } from "@/lib/types";
+import { QuizResult1 } from "@/lib/types";
 
-export function ResultSummary({ result }: {result : QuizResult | null}) {
+export function ResultSummary({ result }: { result: QuizResult1 | null }) {
   if (!result)
     return (
       <EmptyStateMessage message="No results available. Try taking a quiz first!" />
     );
 
-  const percentage = Math.round(
-    (result.correctAnswers / result.totalQuestions) * 100
-  )
-
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          Quiz Summary
-        </CardTitle>
+        <CardTitle className="flex items-center gap-2">Quiz Summary</CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="flex justify-center text-primary">
@@ -46,7 +40,9 @@ export function ResultSummary({ result }: {result : QuizResult | null}) {
                 cy="50"
                 r="45"
                 fill="transparent"
-                strokeDasharray={`${percentage * 2.51} 251.2`}
+                strokeDasharray={`${
+                  Math.round(Number(result.percentage)) * 2.51
+                } 251.2`}
                 transform="rotate(-90 50 50)"
               />
               <text
@@ -57,7 +53,7 @@ export function ResultSummary({ result }: {result : QuizResult | null}) {
                 className="text-2xl font-bold "
                 fill="currentColor"
               >
-                {percentage}%
+                {Math.round(Number(result.percentage))}%
               </text>
             </svg>
           </div>
@@ -66,29 +62,32 @@ export function ResultSummary({ result }: {result : QuizResult | null}) {
         <div className="space-y-2">
           <div className="flex justify-between">
             <span className="text-muted-foreground">Quiz</span>
-            <span className="font-medium">{result.quizTitle}</span>
+            <span className="font-medium">{result.quiz.title}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Total Questions</span>
-            <span className="font-medium">{result.totalQuestions}</span>
+            <span className="font-medium">{result.correct_answers.length}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Correct Answers</span>
             <span className="font-medium text-green-500">
-              {result.correctAnswers}
+              {(result.correct_answers.length * Number(result.percentage)) /
+                100}
             </span>
           </div>
           <div className="flex justify-between">
             <span className="text-muted-foreground">Wrong Answers</span>
             <span className="font-medium text-red-500">
-              {result.wrongAnswers}
+              {result.correct_answers.length -
+                (result.correct_answers.length * Number(result.percentage)) /
+                  100}
             </span>
           </div>
         </div>
 
         <div className="pt-4 ">
           <Button className="w-full" asChild>
-            <Link href={`/leaderboard/${result.quizId}`}>
+            <Link href={`/leaderboard/${result.quiz.id}`}>
               <BarChart2 className="mr-2 h-4 w-4" />
               View Leaderboard
             </Link>

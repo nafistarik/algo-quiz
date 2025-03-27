@@ -14,7 +14,7 @@ export function DetailedResults({ result }: { result: QuizResult | null }) {
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          {result.questions.map((question: Question, index: number) => (
+          {result?.questions?.map((question: Question, index: number) => (
             <div
               key={question.id}
               className="border rounded-lg overflow-hidden"
@@ -43,23 +43,23 @@ export function DetailedResults({ result }: { result: QuizResult | null }) {
                   <div
                     key={option.id}
                     className={`p-2 px-4 rounded-md flex items-center ${
-                      option.id === question.correctAnswerId
+                      option.text === question.correctAnswer
                         ? "bg-green-500/40 "
-                        : option.id === question.userAnswerId &&
-                          option.id !== question.correctAnswerId
+                        : option.text === question.submittedAnswer &&
+                          option.text !== question.correctAnswer
                         ? "bg-red-500/30 "
                         : "border"
                     }`}
                   >
-                    {option.id === question.correctAnswerId && (
+                    {option.text === question.correctAnswer && (
                       <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
                     )}
-                    {option.id === question.userAnswerId &&
-                      option.id !== question.correctAnswerId && (
+                    {option.text === question.submittedAnswer &&
+                      option.text !== question.correctAnswer && (
                         <X className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
                       )}
-                    {option.id !== question.correctAnswerId &&
-                      option.id !== question.userAnswerId && (
+                    {option.text !== question.correctAnswer &&
+                      option.text !== question.submittedAnswer && (
                         <div className="w-4 h-4 mr-2 flex-shrink-0" />
                       )}
                     <span>{option.text}</span>

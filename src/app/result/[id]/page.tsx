@@ -2,24 +2,29 @@
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
-import { quizResult } from "@/lib/data";
+import { quizDetails, quizResult1 } from "@/lib/data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ResultSummary } from "@/components/result/ResultSummary";
 import { DetailedResults } from "@/components/result/DetailedResults";
 import { QuizResult } from "@/lib/types";
+import { mergeQuizData } from "@/lib/utils";
 
 export default function ResultPage() {
-  const [result, setResult] = useState<QuizResult | null>(null);
+  
+    const mergedResult = mergeQuizData(quizDetails, quizResult1);
+  const [result, setResult] = useState< QuizResult | null >(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setResult(quizResult);
+      setResult(mergedResult);
       setIsLoading(false);
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [mergedResult]);
+
+  console.log(mergedResult,"kkkkkkkkkkkkkkkkkkkkk")
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -40,7 +45,7 @@ export default function ResultPage() {
           ) : (
             <>
               <div className="md:col-span-1">
-                <ResultSummary result={result} />
+                <ResultSummary result={quizResult1} />
               </div>
               <div className="md:col-span-2">
                 <DetailedResults result={result} />

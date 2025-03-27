@@ -16,12 +16,12 @@ export interface User {
     id: string
     title: string
     description: string
-    status: string
+    status?: string
     questionCount: number
     questions: Question[]
     createdAt: string
     thumbnail? : string | StaticImageData | null
-    totalAttempts: number
+    totalAttempts?: number | null | undefined
   }
   
   export interface Question {
@@ -31,19 +31,41 @@ export interface User {
       id: string
       text: string
     }[]
-    correctAnswerId: string
-    userAnswerId?: string
+    correctAnswer?: string | null
+    submittedAnswer?: string | null
     isCorrect?: boolean
   }
   
   export interface QuizResult {
     id: string
-    quizId: string
-    quizTitle: string
-    totalQuestions: number
-    correctAnswers: number
-    wrongAnswers: number
+    quizId?: string
+    quizTitle?: string
+    totalQuestions?: number
+    correctAnswers?: number
+    wrongAnswers?: number
     questions: Question[]
+  }
+
+  export interface QuizResult1 {
+    attempt_id: string;
+    quiz: {
+      id: string;
+      title: string;
+      total_marks: number;
+    };
+    percentage: string;
+    submitted_answers: Answer[];
+    correct_answers: CorrectAnswer[];
+    submitted_at: string;
+  }
+  
+  export interface Answer {
+    question_id: string;
+    answer: string;
+  }
+  
+  export interface CorrectAnswer extends Answer {
+    marks: number;
   }
   
   export interface QuizHistory {

@@ -32,7 +32,7 @@ export default function RecentQuizCard({ quiz }: { quiz: Quiz }) {
           </div>
         </div>
         <Button variant="outline" size="sm" asChild>
-          <Link href={`/quiz/${quiz.id}`}>
+          <Link href={`/result/${quiz.id}`} >
             <span className="hidden sm:block" >View</span> Result
             <ArrowRight className="ml-2 h-4 w-4 hidden sm:block" />
           </Link>
