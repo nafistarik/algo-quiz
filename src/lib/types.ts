@@ -122,4 +122,60 @@ export interface User {
     }[]
   }
   
+  type LeaderBoardQuiz = {
+    id: string;
+    title: string;
+    description: string;
+    total_marks: number;
+    total_questions: number;
+  };
   
+  type Stats = {
+    total_attempts: number;
+    average_score: string;
+    highest_score: number;
+    lowest_score: number;
+  };
+  
+  type LeaderboardUser = {
+    id: string;
+    full_name: string;
+    email: string;
+  };
+  
+  type LeaderboardAnswer = {
+    question_id: string;
+    answer: string;
+  };
+  
+  type LeaderboardCorrectAnswer = {
+    question_id: string;
+    answer: string;
+    marks: number;
+  };
+  
+  type Attempt = {
+    id: string;
+    user: LeaderboardUser;
+    submitted_answers: LeaderboardAnswer[];
+    correct_answers: LeaderboardCorrectAnswer[];
+  };
+  
+export type LeaderboardDatas = {
+    quiz: LeaderBoardQuiz;
+    stats: Stats;
+    attempts: Attempt[];
+  };
+  
+export type AllPerformers =  {
+    id: string
+    name: string
+    email: string
+    obtainedMarks: number
+    correctAnswers: number
+    wrongAnswers: number
+    submittedAnswers: number
+    rank: number | null
+    avatar: string
+    color: string
+  }

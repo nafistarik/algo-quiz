@@ -222,6 +222,153 @@ export const quizResult1 = {
   submitted_at: "2025-03-26T10:00:00.000Z",
 };
 
+export const leaderboardDatas = {
+  quiz: {
+    id: "4",
+    title: "Data Structures Basics",
+    description:
+      "Learn about arrays, linked lists, stacks, and trees. Build a strong foundation!",
+    total_marks: 30,
+    total_questions: 4,
+  },
+  stats: {
+    total_attempts: 7,
+    average_score: "18.57",
+    highest_score: 30,
+    lowest_score: 5,
+  },
+  attempts: [
+    {
+      id: "1",
+      user: {
+        id: "u1",
+        full_name: "John Doe",
+        email: "john@example.com",
+      },
+      submitted_answers: [
+        { question_id: "q1", answer: "Stack" },
+        { question_id: "q2", answer: "Queue" },
+        { question_id: "q3", answer: "O(n)" },
+        { question_id: "q4", answer: "Heap" },
+      ],
+      correct_answers: [
+        { question_id: "q1", answer: "Stack", marks: 5 },
+        { question_id: "q4", answer: "Heap", marks: 5 },
+      ],
+    },
+    {
+      id: "2",
+      user: {
+        id: "u2",
+        full_name: "Jane Smith",
+        email: "jane@example.com",
+      },
+      submitted_answers: [
+        { question_id: "q1", answer: "Stack" },
+        { question_id: "q2", answer: "Stack" },
+        { question_id: "q3", answer: "O(1)" },
+        { question_id: "q4", answer: "Heap" },
+      ],
+      correct_answers: [
+        { question_id: "q1", answer: "Stack", marks: 5 },
+        { question_id: "q2", answer: "Stack", marks: 10 },
+        { question_id: "q3", answer: "O(1)", marks: 10 },
+        { question_id: "q4", answer: "Heap", marks: 5 },
+      ],
+    },
+    {
+      id: "3",
+      user: {
+        id: "u3",
+        full_name: "Charlie Brown",
+        email: "charlie@example.com",
+      },
+      submitted_answers: [
+        { question_id: "q1", answer: "Queue" },
+        { question_id: "q2", answer: "Stack" },
+        { question_id: "q3", answer: "O(log n)" },
+        { question_id: "q4", answer: "Stack" },
+      ],
+      correct_answers: [{ question_id: "q2", answer: "Stack", marks: 10 }],
+    },
+    {
+      id: "4",
+      user: {
+        id: "u4",
+        full_name: "Emily Clark",
+        email: "emily@example.com",
+      },
+      submitted_answers: [
+        { question_id: "q1", answer: "Stack" },
+        { question_id: "q2", answer: "Stack" },
+        { question_id: "q3", answer: "O(1)" },
+        { question_id: "q4", answer: "Heap" },
+      ],
+      correct_answers: [
+        { question_id: "q1", answer: "Stack", marks: 5 },
+        { question_id: "q2", answer: "Stack", marks: 10 },
+        { question_id: "q3", answer: "O(1)", marks: 10 },
+        { question_id: "q4", answer: "Heap", marks: 5 },
+      ],
+    },
+    {
+      id: "5",
+      user: {
+        id: "u5",
+        full_name: "Michael Scott",
+        email: "michael@example.com",
+      },
+      submitted_answers: [
+        { question_id: "q1", answer: "Array" },
+        { question_id: "q2", answer: "Queue" },
+        { question_id: "q3", answer: "O(n)" },
+        { question_id: "q4", answer: "Graph" },
+      ],
+      correct_answers: [],
+    },
+    {
+      id: "6",
+      user: {
+        id: "u6",
+        full_name: "Rachel Green",
+        email: "rachel@example.com",
+      },
+      submitted_answers: [
+        { question_id: "q1", answer: "Stack" },
+        { question_id: "q2", answer: "Stack" },
+        { question_id: "q3", answer: "O(1)" },
+        { question_id: "q4", answer: "Heap" },
+      ],
+      correct_answers: [
+        { question_id: "q1", answer: "Stack", marks: 5 },
+        { question_id: "q2", answer: "Stack", marks: 10 },
+        { question_id: "q3", answer: "O(1)", marks: 10 },
+        { question_id: "q4", answer: "Heap", marks: 5 },
+      ],
+    },
+    {
+      id: "7",
+      user: {
+        id: "u7",
+        full_name: "Ross Geller",
+        email: "ross@example.com",
+      },
+      submitted_answers: [
+        { question_id: "q1", answer: "Stack" },
+        { question_id: "q2", answer: "Stack" },
+        { question_id: "q3", answer: "O(1)" },
+        { question_id: "q4", answer: "Heap" },
+      ],
+      correct_answers: [
+        { question_id: "q1", answer: "Stack", marks: 5 },
+        { question_id: "q2", answer: "Stack", marks: 10 },
+        { question_id: "q3", answer: "O(1)", marks: 10 },
+        { question_id: "q4", answer: "Heap", marks: 5 },
+      ],
+    },
+  ],
+};
+
 export const leaderboardData = {
   topUsers: [
     {
@@ -324,9 +471,9 @@ export const leaderboardData = {
 };
 
 export const userProfile = {
-  id: "user-123",
-  name: "John Doe",
-  email: "john.doe@example.com",
+  id: "u3",
+  name: "Charlie Brown",
+  email: "charlie@example.com",
   avatar: "/placeholder.svg?height=100&width=100",
   quizHistory: [
     {

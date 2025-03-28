@@ -24,8 +24,6 @@ export default function ResultPage() {
     return () => clearTimeout(timer);
   }, [mergedResult]);
 
-  console.log(mergedResult,"kkkkkkkkkkkkkkkkkkkkk")
-
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />

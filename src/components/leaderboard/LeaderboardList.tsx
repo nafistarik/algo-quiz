@@ -9,50 +9,68 @@ interface LeaderboardListProps {
 
 export function LeaderboardList({ users }: LeaderboardListProps) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          Top Players
-          <span className="text-primary text-xl">🏆</span>
+    <Card className="shadow-lg overflow-hidden">
+      <CardHeader className="border-b">
+        <CardTitle className="flex items-center gap-3 text-2xl">
+          <span className="text-yellow-500">🏆</span>
+          Top Performers
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {users.map((user, index) => (
-            <div key={user.id} className="flex items-center justify-between p-4 rounded-lg bg-muted/50">
+      <CardContent className="p-0">
+        <div className="divide-y">
+          {users?.slice(0,5).map((user, index) => (
+            <div 
+              key={user.id} 
+              className="flex items-center justify-between p-4 hover:bg-muted transition-colors"
+            >
               <div className="flex items-center gap-4">
-                <div
-                  className={`flex items-center justify-center w-8 h-8 rounded-full font-bold text-white ${
-                    index === 0
-                      ? "bg-yellow-500"
-                      : index === 1
-                        ? "bg-gray-400"
-                        : index === 2
-                          ? "bg-amber-700"
-                          : "bg-primary"
-                  }`}
-                >
-                  {index + 1}
+                <div className="relative">
+                  {index < 3 ? (
+                    <div 
+                      className={`flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full text-white text-2xl font-extrabold ${
+                        index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' :
+                        index === 1 ? 'bg-gradient-to-br from-gray-400 to-gray-600' :
+                        'bg-gradient-to-br from-amber-600 to-amber-800'
+                      }`}
+                    >
+                      {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-muted font-medium">
+                      {index + 1}
+                    </div>
+                  )}
                 </div>
-                <Avatar>
+                
+                <Avatar className="w-8 h-8 sm:w-10 sm:h-10 border-2" style={{ borderColor: user.color }}>
                   <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="bg-primary/10 text-primary" style={{ backgroundColor: user.color }}>
+                  <AvatarFallback className="bg-gradient-to-br from-primary to-secondary text-white">
                     {user.name
                       .split(" ")
                       .map((n: string) => n[0])
                       .join("")}
                   </AvatarFallback>
                 </Avatar>
+                
                 <div>
                   <p className="font-medium">{user.name}</p>
-                  <p className="text-sm text-muted-foreground">{user.score} Points</p>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">
+                      {user.obtainedMarks} points
+                    </span>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-muted text-muted-foreground hidden sm:block">
+                      {user.correctAnswers} / {user.submittedAnswers}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div
-                className="w-10 h-10 rounded-full flex items-center justify-center text-white font-medium"
-                style={{ backgroundColor: user.color || "#ea4c37" }}
-              >
-                {user.rank}
+              
+              <div className="flex items-center gap-2">
+
+                <div className="h-8 w-px bg-border mx-2"></div>
+                <div className="text-sm font-medium text-muted-foreground px-2 py-0.5 rounded-full bg-muted">
+                  {user.rank === 1 ? "1st" : user.rank === 2 ? "2nd" : user.rank === 3 ? "3rd" : `${user.rank}th`}
+                </div>
               </div>
             </div>
           ))}
@@ -61,4 +79,3 @@ export function LeaderboardList({ users }: LeaderboardListProps) {
     </Card>
   )
 }
-
