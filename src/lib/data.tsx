@@ -305,7 +305,6 @@ export const leaderboardDatas = {
         { question_id: "q4", answer: "Heap" },
       ],
       correct_answers: [
-        { question_id: "q1", answer: "Stack", marks: 5 },
         { question_id: "q2", answer: "Stack", marks: 10 },
         { question_id: "q3", answer: "O(1)", marks: 10 },
         { question_id: "q4", answer: "Heap", marks: 5 },
@@ -341,7 +340,6 @@ export const leaderboardDatas = {
       ],
       correct_answers: [
         { question_id: "q1", answer: "Stack", marks: 5 },
-        { question_id: "q2", answer: "Stack", marks: 10 },
         { question_id: "q3", answer: "O(1)", marks: 10 },
         { question_id: "q4", answer: "Heap", marks: 5 },
       ],
@@ -667,7 +665,7 @@ export const analyticsData = {
 };
 
 export const defaultUser = {
-  id: "user-123",
+  id: "u4",
   name: "John Doe",
   email: "john.doe@example.com",
   avatar: "/placeholder.svg?height=100&width=100",

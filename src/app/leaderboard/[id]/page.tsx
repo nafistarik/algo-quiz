@@ -7,7 +7,7 @@ import { UserStats } from "@/components/leaderboard/UserStats";
 import { useParams } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
-import { leaderboardData, leaderboardDatas } from "@/lib/data";
+import { defaultUser, leaderboardData, leaderboardDatas } from "@/lib/data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { AllPerformers } from "@/lib/types";
 
@@ -54,6 +54,12 @@ for (let i = 0; i < allPerformers.length; i++) {
   allPerformers[i].color =
     rankColors[rank as keyof typeof rankColors] || rankColors.default;
 }
+let myPerformance: any = {};
+allPerformers.forEach((performance: any) => {
+  if (performance.id === defaultUser.id) {
+    myPerformance = performance;
+  }
+});
 
 export default function LeaderboardPage() {
   const params = useParams();
@@ -92,12 +98,13 @@ export default function LeaderboardPage() {
             <>
               <div className="md:col-span-1">
                 <UserStats
-                  currentUser={leaderboard?.currentUser}
-                  quizStats={leaderboard?.quizStats}
+                  leaderBoardData={leaderboardDatas}
+                  myPerformance={myPerformance}
                 />
               </div>
               <div className="md:col-span-2">
-                <LeaderboardList users={allPerformers || []} />
+                <LeaderboardList users={allPerformers || []} 
+                  myPerformance={myPerformance}/>
               </div>
             </>
           )}
