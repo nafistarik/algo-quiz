@@ -1,10 +1,10 @@
 /* eslint-disable */
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Question, QuizResult } from "@/lib/types";
+import { MergedResult, Question } from "@/lib/types";
 import { Check, X } from "lucide-react";
 
-export function DetailedResults({ result }: { result: QuizResult | null }) {
+export function DetailedResults({ result }: { result: MergedResult | null }) {
   if (!result) return null;
 
   return (

@@ -1,6 +1,6 @@
 import { HomeHero } from "@/components/home/HomeHero"
 import { PopularQuizzes } from "@/components/home/PopularQuizzes"
-import { RecentlyPlayed } from "@/components/home/RecentlyPlayed"
+// import { RecentlyPlayed } from "@/components/home/RecentlyPlayed"
 import { SiteHeader } from "@/components/SiteHeader"
 
 export default function Home() {
@@ -9,9 +9,9 @@ export default function Home() {
       <SiteHeader />
       <main>
         <HomeHero />
-        <div className="container py-8 space-y-10">
+        <div className="container py-8 space-y-10 mb-8">
           <PopularQuizzes />
-          <RecentlyPlayed />
+          {/* <RecentlyPlayed /> */}
         </div>
       </main>
     </div>

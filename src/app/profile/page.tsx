@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Skeleton } from "@/components/ui/skeleton"
 import { QuizHistoryList } from "@/components/profile/QuizHistoryList"
 import { useEffect, useState } from "react"
-import { userProfile } from "@/lib/data"
+import { popularQuizzes, userProfile } from "@/lib/data"
 import { SiteHeader } from "@/components/SiteHeader"
 import { UserAchievements } from "@/components/profile/UserAchievements"
 
@@ -25,6 +25,9 @@ export default function ProfilePage() {
 
     return () => clearTimeout(timer)
   }, [])
+
+  
+    const quizzesHistory = popularQuizzes.filter((quiz)=>quiz?.totalAttempts > 0);
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -72,7 +75,7 @@ export default function ProfilePage() {
                   <CardTitle>Your Quiz History</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <QuizHistoryList quizzes={profile?.quizHistory || []} />
+                  <QuizHistoryList />
                 </CardContent>
               </Card>
             )}

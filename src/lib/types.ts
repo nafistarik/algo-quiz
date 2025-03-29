@@ -36,17 +36,18 @@ export interface User {
     isCorrect?: boolean
   }
   
-  export interface QuizResult {
+  export interface MergedResult {
     id: string
     quizId?: string
     quizTitle?: string
     totalQuestions?: number
     correctAnswers?: number
     wrongAnswers?: number
+    percentage?: number
     questions: Question[]
   }
 
-  export interface QuizResult1 {
+  export interface QuizResult {
     attempt_id: string;
     quiz: {
       id: string;

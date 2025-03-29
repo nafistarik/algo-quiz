@@ -7,7 +7,7 @@ import { UserStats } from "@/components/leaderboard/UserStats";
 import { useParams } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
-import { defaultUser, leaderboardData, leaderboardDatas } from "@/lib/data";
+import { defaultUser, leaderboardDatas } from "@/lib/data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { AllPerformers } from "@/lib/types";
 
@@ -69,7 +69,7 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setLeaderboard(leaderboardData);
+      setLeaderboard(leaderboardDatas);
       setIsLoading(false);
     }, 1000);
 
@@ -98,7 +98,7 @@ export default function LeaderboardPage() {
             <>
               <div className="md:col-span-1">
                 <UserStats
-                  leaderBoardData={leaderboardDatas}
+                  leaderBoardData={leaderboard}
                   myPerformance={myPerformance}
                 />
               </div>

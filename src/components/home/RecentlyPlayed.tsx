@@ -3,7 +3,7 @@ import EmptyStateMessage from "../EmptyStateMessage";
 import RecentQuizCard from "./RecentQuizCard";
 
 export function RecentlyPlayed() {
-  const quizzes = popularQuizzes;
+  const quizzes = popularQuizzes.filter((quiz)=>quiz?.totalAttempts > 0);
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
@@ -13,7 +13,7 @@ export function RecentlyPlayed() {
         {quizzes.length === 0 ? (
           <EmptyStateMessage message="You haven't attempted any quizzes yet! Give one a try!" />
         ) : (
-          quizzes?.filter((quiz)=>quiz?.totalAttempts > 0).map((quiz) => <RecentQuizCard quiz={quiz} key={quiz.id} />)
+          quizzes?.map((quiz) => <RecentQuizCard quiz={quiz} key={quiz.id} />)
         )}
       </div>
     </section>

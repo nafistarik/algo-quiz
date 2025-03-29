@@ -1,11 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { QuizResult } from "@/lib/types";
 import { BarChart2 } from "lucide-react";
+import Link from "next/link";
 import EmptyStateMessage from "../EmptyStateMessage";
-import { QuizResult1 } from "@/lib/types";
 
-export function ResultSummary({ result }: { result: QuizResult1 | null }) {
+export function ResultSummary({ result }: { result: QuizResult | null }) {
   if (!result)
     return (
       <EmptyStateMessage message="No results available. Try taking a quiz first!" />

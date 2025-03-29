@@ -1,7 +1,7 @@
-/* eslint-disable */
+
 
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
-import type { Quiz, QuizResult, User, QuizStats } from "@/lib/types"
+// import type { Quiz, QuizResult, User, QuizStats } from "@/lib/types"
 
 // This would be replaced with your actual API base URL
 const baseUrl = "/api"
@@ -165,61 +165,61 @@ export const quizApi = createApi({
         resultId: "result-123",
       }),
     }),
-    getQuizResult: builder.query<QuizResult, string>({
-      query: (resultId) => `/results/${resultId}`,
-      // Mock data for development
-      transformResponse: (_, __, arg) => ({
-        id: arg,
-        quizId: "quiz-123",
-        quizTitle: "Technology Quiz",
-        totalQuestions: 10,
-        correctAnswers: 7,
-        wrongAnswers: 3,
-        timeTaken: "8:45",
-        questions: [
-          {
-            id: "q1",
-            text: "What does CPU stand for?",
-            options: [
-              { id: "a", text: "Central Processing Unit" },
-              { id: "b", text: "Computer Personal Unit" },
-              { id: "c", text: "Central Processor Unifier" },
-              { id: "d", text: "Central Process Utility" },
-            ],
-            correctAnswerId: "a",
-            userAnswerId: "a",
-            isCorrect: true,
-          },
-          {
-            id: "q2",
-            text: "Which company created the iPhone?",
-            options: [
-              { id: "a", text: "Google" },
-              { id: "b", text: "Microsoft" },
-              { id: "c", text: "Apple" },
-              { id: "d", text: "Samsung" },
-            ],
-            correctAnswerId: "c",
-            userAnswerId: "c",
-            isCorrect: true,
-          },
-          {
-            id: "q3",
-            text: "What year was the first website created?",
-            options: [
-              { id: "a", text: "1985" },
-              { id: "b", text: "1991" },
-              { id: "c", text: "1995" },
-              { id: "d", text: "2000" },
-            ],
-            correctAnswerId: "b",
-            userAnswerId: "a",
-            isCorrect: false,
-            explanation: "The first website was created in 1991 by Tim Berners-Lee.",
-          },
-        ],
-      }),
-    }),
+    // getQuizResult: builder.query<QuizResult, string>({
+    //   query: (resultId) => `/results/${resultId}`,
+    //   // Mock data for development
+    //   transformResponse: (_, __, arg) => ({
+    //     id: arg,
+    //     quizId: "quiz-123",
+    //     quizTitle: "Technology Quiz",
+    //     totalQuestions: 10,
+    //     correctAnswers: 7,
+    //     wrongAnswers: 3,
+    //     timeTaken: "8:45",
+    //     questions: [
+    //       {
+    //         id: "q1",
+    //         text: "What does CPU stand for?",
+    //         options: [
+    //           { id: "a", text: "Central Processing Unit" },
+    //           { id: "b", text: "Computer Personal Unit" },
+    //           { id: "c", text: "Central Processor Unifier" },
+    //           { id: "d", text: "Central Process Utility" },
+    //         ],
+    //         correctAnswerId: "a",
+    //         userAnswerId: "a",
+    //         isCorrect: true,
+    //       },
+    //       {
+    //         id: "q2",
+    //         text: "Which company created the iPhone?",
+    //         options: [
+    //           { id: "a", text: "Google" },
+    //           { id: "b", text: "Microsoft" },
+    //           { id: "c", text: "Apple" },
+    //           { id: "d", text: "Samsung" },
+    //         ],
+    //         correctAnswerId: "c",
+    //         userAnswerId: "c",
+    //         isCorrect: true,
+    //       },
+    //       {
+    //         id: "q3",
+    //         text: "What year was the first website created?",
+    //         options: [
+    //           { id: "a", text: "1985" },
+    //           { id: "b", text: "1991" },
+    //           { id: "c", text: "1995" },
+    //           { id: "d", text: "2000" },
+    //         ],
+    //         correctAnswerId: "b",
+    //         userAnswerId: "a",
+    //         isCorrect: false,
+    //         explanation: "The first website was created in 1991 by Tim Berners-Lee.",
+    //       },
+    //     ],
+    //   }),
+    // }),
     // getLeaderboard: builder.query<
     //   {
     //     topUsers: User[]
@@ -339,7 +339,7 @@ export const {
   useGetRecentlyPlayedQuery,
   // useGetQuizByIdQuery,
   useSubmitQuizMutation,
-  useGetQuizResultQuery,
+  // useGetQuizResultQuery,
 //   useGetLeaderboardQuery,
 } = quizApi
 

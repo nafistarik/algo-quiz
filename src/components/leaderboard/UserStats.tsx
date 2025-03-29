@@ -12,6 +12,7 @@ export function UserStats({
   leaderBoardData,
   myPerformance,
 }: UserStatsProps) {
+  
   if (!leaderBoardData || !myPerformance) {
     return null;
   }
@@ -51,7 +52,7 @@ export function UserStats({
           </div>
           <div className="bg-muted p-4 rounded-lg text-center">
             <p className="text-sm text-muted-foreground">Points</p>
-            <p className="text-2xl font-bold text-red-500">
+            <p className="text-2xl font-bold text-blue-500">
               {myPerformance.obtainedMarks}
             </p>
           </div>
