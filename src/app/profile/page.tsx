@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Skeleton } from "@/components/ui/skeleton"
 import { QuizHistoryList } from "@/components/profile/QuizHistoryList"
 import { useEffect, useState } from "react"
-import { popularQuizzes, userProfile } from "@/lib/data"
+import { defaultUser } from "@/lib/data"
 import { SiteHeader } from "@/components/SiteHeader"
 import { UserAchievements } from "@/components/profile/UserAchievements"
 
@@ -17,17 +17,13 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Simulate loading
     const timer = setTimeout(() => {
-      setProfile(userProfile)
+      setProfile(defaultUser)
       setIsLoading(false)
     }, 1000)
 
     return () => clearTimeout(timer)
   }, [])
-
-  
-    const quizzesHistory = popularQuizzes.filter((quiz)=>quiz?.totalAttempts > 0);
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
@@ -46,9 +42,10 @@ export default function ProfilePage() {
             <div className="flex items-center gap-4">
               <Avatar className="h-20 w-20">
                 <AvatarImage src={profile?.avatar} alt={profile?.name} />
-                <AvatarFallback className="text-xl">
+                <AvatarFallback className="text-2xl">
                   {profile?.name
                     .split(" ")
+                    .slice(0,2)
                     .map((n: string) => n[0])
                     .join("")}
                 </AvatarFallback>
@@ -89,7 +86,7 @@ export default function ProfilePage() {
                   <CardTitle>Your Achievements</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <UserAchievements achievements={profile?.achievements || []} />
+                  <UserAchievements />
                 </CardContent>
               </Card>
             )}

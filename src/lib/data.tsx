@@ -468,64 +468,64 @@ export const leaderboardDatas = {
 //   },
 // };
 
-export const userProfile = {
-  id: "u3",
-  name: "Charlie Brown",
-  email: "charlie@example.com",
-  avatar: "/placeholder.svg?height=100&width=100",
-  quizHistory: [
-    {
-      id: "1",
-      title: "Technology Quiz",
-      date: new Date().toISOString(),
-      score: 8,
-      totalQuestions: 10,
-      resultId: "result-1",
-    },
-    {
-      id: "2",
-      title: "Science Quiz",
-      date: new Date(Date.now() - 86400000).toISOString(),
-      score: 7,
-      totalQuestions: 10,
-      resultId: "result-2",
-    },
-    {
-      id: "3",
-      title: "History Quiz",
-      date: new Date(Date.now() - 172800000).toISOString(),
-      score: 9,
-      totalQuestions: 12,
-      resultId: "result-3",
-    },
-  ],
-  achievements: [
-    {
-      id: "1",
-      title: "Quiz Master",
-      description: "Complete 10 quizzes with a score of 80% or higher",
-      earnedDate: new Date(Date.now() - 86400000).toISOString(),
-      icon: "🏆",
-      color: "#ea4c37",
-    },
-    {
-      id: "2",
-      title: "Perfect Score",
-      description: "Get a perfect score on any quiz",
-      earnedDate: new Date(Date.now() - 172800000).toISOString(),
-      icon: "🌟",
-      color: "#29A0F3",
-    },
-    {
-      id: "3",
-      title: "Speed Demon",
-      description: "Complete a quiz in less than half the allotted time",
-      earnedDate: new Date(Date.now() - 259200000).toISOString(),
-      icon: "⚡",
-      color: "#6366f1",
-    },
-  ],
-};
+// export const userProfile = {
+//   id: "u3",
+//   name: "Charlie Brown",
+//   email: "charlie@example.com",
+//   avatar: "/placeholder.svg?height=100&width=100",
+//   quizHistory: [
+//     {
+//       id: "1",
+//       title: "Technology Quiz",
+//       date: new Date().toISOString(),
+//       score: 8,
+//       totalQuestions: 10,
+//       resultId: "result-1",
+//     },
+//     {
+//       id: "2",
+//       title: "Science Quiz",
+//       date: new Date(Date.now() - 86400000).toISOString(),
+//       score: 7,
+//       totalQuestions: 10,
+//       resultId: "result-2",
+//     },
+//     {
+//       id: "3",
+//       title: "History Quiz",
+//       date: new Date(Date.now() - 172800000).toISOString(),
+//       score: 9,
+//       totalQuestions: 12,
+//       resultId: "result-3",
+//     },
+//   ],
+//   achievements: [
+//     {
+//       id: "1",
+//       title: "Quiz Master",
+//       description: "Complete 10 quizzes with a score of 80% or higher",
+//       earnedDate: new Date(Date.now() - 86400000).toISOString(),
+//       icon: "🏆",
+//       color: "#ea4c37",
+//     },
+//     {
+//       id: "2",
+//       title: "Perfect Score",
+//       description: "Get a perfect score on any quiz",
+//       earnedDate: new Date(Date.now() - 172800000).toISOString(),
+//       icon: "🌟",
+//       color: "#29A0F3",
+//     },
+//     {
+//       id: "3",
+//       title: "Speed Demon",
+//       description: "Complete a quiz in less than half the allotted time",
+//       earnedDate: new Date(Date.now() - 259200000).toISOString(),
+//       icon: "⚡",
+//       color: "#6366f1",
+//     },
+//   ],
+// };
 
 export const adminQuizzes = [
   {
@@ -671,3 +671,58 @@ export const defaultUser = {
   avatar: "/placeholder.svg?height=100&width=100",
   role: "user",
 };
+
+
+export const allAchievements = [
+  {
+    id: 1,
+    title: "Beginner Explorer",
+    description: "Attempted first quiz",
+    unlocked: false,
+    icon: "🌱"
+  },
+  {
+    id: 2,
+    title: "Perfectionist",
+    description: "Scored 100% on a quiz",
+    unlocked: false,
+    icon: "🏆"
+  },
+  {
+    id: 3,
+    title: "Consistent Genius",
+    description: "Scored 70%+ in all quizzes",
+    unlocked: false,
+    icon: "🧠"
+  },
+  {
+    id: 4,
+    title: "Master of Quizzes",
+    description: "Attempted 3+ quizzes",
+    unlocked: false,
+    icon: "👑"
+  }
+];
+
+export const dummyQuizResults = [
+  {
+    attempt_id: "result-1",
+    quiz: {
+      id: "1",
+      title: "Sorting Algorithms",
+      total_marks: 60,
+    },
+    percentage: "100.00",
+    submitted_at: "2025-03-25T10:00:00.000Z"
+  },
+  {
+    attempt_id: "result-4",
+    quiz: {
+      id: "4",
+      title: "Data Structures Basics",
+      total_marks: 20,
+    },
+    percentage: "75.00",
+    submitted_at: "2025-03-26T10:00:00.000Z"
+  }
+];

@@ -33,3 +33,24 @@ export const mergeQuizData = (quizDetails: Quiz, quizResult: QuizResult) => {
   };
   return mergedResult;
 };
+
+
+/*
+
+  // first of all I need to find out the array of id's for the quizes I have given from popular quizes which are filter out by isAttempted!
+  const attemptedQuizesIds = popularQuizes.filter(quiz => quiz.totalAttempts > 0).map(quiz => quiz.id);
+
+  // now based on this array I need call the api for each quiz result
+  const fetchAllQuizResults = (attemptedQuizesIds) => {
+    const results = [];
+    for (let i = 0; i < attemptedQuizesIds.length; i++) {
+      const result = fetchAllQuizResults(attemptedQuizesIds[i]);
+      results.push(result);
+    }
+    return results;
+  }
+
+  // now I need to call the api for each quiz result
+  myQuizResults = fetchAllQuizResults(attemptedQuizesIds);
+
+*/
