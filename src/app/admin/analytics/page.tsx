@@ -2,7 +2,6 @@
 
 "use client";
 
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { QuizAnalytics } from "@/components/admin/QuizAnalytics";
 import { Skeleton } from "@/components/ui/skeleton";
 import { analyticsData } from "@/lib/data";
@@ -24,7 +23,7 @@ export default function AnalyticsPage() {
 
   return (
     <div className="flex min-h-screen bg-background">
-      <AdminSidebar />
+      {/* <AdminSidebar /> */}
       <main className="flex-1 p-8">
         <h1 className="text-3xl font-bold mb-8">Quiz Analytics</h1>
         {isLoading ? (

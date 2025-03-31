@@ -24,7 +24,6 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="flex min-h-screen bg-background">
-      <AdminSidebar />
       <main className="flex-1 p-8">
         <h1 className="text-3xl font-bold mb-8">Quiz Dashboard</h1>
         {isLoading ? (

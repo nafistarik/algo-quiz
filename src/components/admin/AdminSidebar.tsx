@@ -1,42 +1,72 @@
-"use client"
+// components/admin/AdminSidebar.tsx
+"use client";
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { LayoutDashboard, PlusCircle, BarChart2, LogOut, Trophy } from "lucide-react"
-import { useRouter } from "next/navigation"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  LayoutDashboard,
+  PlusCircle,
+  BarChart2,
+  LogOut,
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import logo from "@/assets/images/home/logo.png";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
-export function AdminSidebar() {
-  const router = useRouter()
+export function AdminSidebar({ onNavigate }: { onNavigate?: () => void }) {
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleLogout = () => {
-    // Fake logout - just redirect to home
-    router.push("/")
-  }
+    router.push("/");
+  };
+
+  const isActive = (path: string) => {
+    return pathname?.startsWith(path);
+  };
 
   return (
-    <div className="w-64 bg-primary/10 h-screen sticky top-0 p-6 hidden md:block">
+    <>
       <div className="flex items-center gap-2 mb-10">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl font-bold">Quiz</span>
-          <Trophy className="h-5 w-5 text-yellow-500" />
+        <Link href="/" onClick={onNavigate}>
+          <Image
+            src={logo}
+            width={1000}
+            height={1000}
+            alt="Quiz logo"
+            className="h-10 w-auto"
+          />
         </Link>
       </div>
 
       <nav className="space-y-2">
-        <Button variant="ghost" className="w-full justify-start" asChild>
-          <Link href="/admin/dashboard">
+        <Button
+          variant={isActive("/admin/dashboard") ? "default" : "ghost"}
+          className="w-full justify-start"
+          asChild
+        >
+          <Link href="/admin/dashboard" onClick={onNavigate}>
             <LayoutDashboard className="mr-2 h-5 w-5" />
             Dashboard
           </Link>
         </Button>
-        <Button variant="ghost" className="w-full justify-start" asChild>
-          <Link href="/admin/create-quiz">
+        <Button
+          variant={isActive("/admin/dashboard/create-quiz") ? "default" : "ghost"}
+          className="w-full justify-start"
+          asChild
+        >
+          <Link href="/admin/dashboard/create-quiz" onClick={onNavigate}>
             <PlusCircle className="mr-2 h-5 w-5" />
             Create Quiz
           </Link>
         </Button>
-        <Button variant="ghost" className="w-full justify-start" asChild>
-          <Link href="/admin/analytics">
+        <Button
+          variant={isActive("/admin/dashboard/analytics") ? "default" : "ghost"}
+          className="w-full justify-start"
+          asChild
+        >
+          <Link href="/admin/dashboard/analytics" onClick={onNavigate}>
             <BarChart2 className="mr-2 h-5 w-5" />
             Analytics
           </Link>
@@ -49,7 +79,6 @@ export function AdminSidebar() {
           Logout
         </Button>
       </div>
-    </div>
-  )
+    </>
+  );
 }
-

@@ -64,7 +64,7 @@ export function SiteHeader() {
                   <Link href="/profile">Profile</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/admin/dashboard">Admin Dashboard</Link>
+                  <Link href="/admin">Admin Dashboard</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setIsLoggedIn(false)}>
                   Logout

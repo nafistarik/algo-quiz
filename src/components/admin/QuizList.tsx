@@ -13,6 +13,7 @@ import { MoreHorizontal, Search, Plus } from "lucide-react"
 import Link from "next/link"
 import { EditQuizDialog } from "./EditQuizDialog"
 import { DeleteQuizDialog } from "./DeleteQuizDialog"
+import EmptyStateMessage from "../EmptyStateMessage"
 
 interface QuizListProps {
   quizzes: any[]
@@ -62,8 +63,8 @@ export function QuizList({ quizzes }: QuizListProps) {
         </Button>
       </div>
 
-      <div className="border rounded-lg">
-        <Table>
+      <div className="border rounded-lg overflow-x-auto">
+        <Table className="w-full overflow-x-auto">
           <TableHeader>
             <TableRow>
               <TableHead>Title</TableHead>
@@ -76,8 +77,9 @@ export function QuizList({ quizzes }: QuizListProps) {
           <TableBody>
             {filteredQuizzes.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="text-center py-8">
-                  No quizzes found. Create your first quiz!
+                <TableCell colSpan={5} className="text-center pt-8">
+                  <EmptyStateMessage message="No quizzes found. Create your first quiz!"/>
+                  {/* No quizzes found. Create your first quiz! */}
                 </TableCell>
               </TableRow>
             ) : (
