@@ -530,99 +530,75 @@ export const leaderboardDatas = {
 export const adminQuizzes = [
   {
     id: "1",
-    title: "Technology Quiz",
-    description: "Test your knowledge of technology",
+    title: "Sorting Algorithms",
+    thumbnail: defaultThumnail,
+    description:
+      "Test your knowledge of Quick Sort, Merge Sort, and Bubble Sort. Pick the best algorithm for each case!",
     status: "published",
-    timeLimit: 10,
-    questions: [
-      {
-        id: "q1",
-        text: "What does CPU stand for?",
-        options: [
-          { id: "a", text: "Central Processing Unit" },
-          { id: "b", text: "Computer Personal Unit" },
-          { id: "c", text: "Central Processor Unifier" },
-          { id: "d", text: "Central Process Utility" },
-        ],
-        correctAnswerId: "a",
-      },
-      {
-        id: "q2",
-        text: "Which company created the iPhone?",
-        options: [
-          { id: "a", text: "Google" },
-          { id: "b", text: "Microsoft" },
-          { id: "c", text: "Apple" },
-          { id: "d", text: "Samsung" },
-        ],
-        correctAnswerId: "c",
-      },
-    ],
-    createdAt: new Date().toISOString(),
+    userId: "00176b41-c9af-48b4-b792-ad3128f02ffa",
+    createdAt: "2024-11-06T11:10:21.051Z",
+    updatedAt: "2024-11-06T11:10:21.051Z",
+    Questions: [],
   },
   {
     id: "2",
-    title: "Science Quiz",
-    description: "Test your knowledge of scientific principles",
-    status: "draft",
-    timeLimit: 15,
-    questions: [
-      {
-        id: "q1",
-        text: "What is the chemical symbol for gold?",
-        options: [
-          { id: "a", text: "Go" },
-          { id: "b", text: "Au" },
-          { id: "c", text: "Ag" },
-          { id: "d", text: "Gd" },
-        ],
-        correctAnswerId: "b",
-      },
-    ],
-    createdAt: new Date(Date.now() - 86400000).toISOString(),
+    title: "Graph Theory",
+    thumbnail: defaultThumnail2,
+    description:
+      "Explore graphs, BFS, DFS, and shortest path algorithms. Strengthen your problem-solving skills!",
+    status: "published",
+    userId: "00176b41-c9af-48b4-b792-ad3128f02ffa",
+    createdAt: "2024-11-06T11:10:21.051Z",
+    updatedAt: "2024-11-06T11:10:21.051Z",
+    Questions: [],
   },
   {
     id: "3",
-    title: "History Quiz",
-    description: "Test your knowledge of historical events",
+    title: "Dynamic Programming",
+    thumbnail: defaultThumnail,
+    description:
+      "Master DP concepts like memoization and tabulation. Solve problems efficiently!",
     status: "published",
-    timeLimit: 12,
-    questions: [
-      {
-        id: "q1",
-        text: "In what year did World War II end?",
-        options: [
-          { id: "a", text: "1943" },
-          { id: "b", text: "1944" },
-          { id: "c", text: "1945" },
-          { id: "d", text: "1946" },
-        ],
-        correctAnswerId: "c",
-      },
-      {
-        id: "q2",
-        text: "Who was the first President of the United States?",
-        options: [
-          { id: "a", text: "Thomas Jefferson" },
-          { id: "b", text: "John Adams" },
-          { id: "c", text: "George Washington" },
-          { id: "d", text: "James Madison" },
-        ],
-        correctAnswerId: "c",
-      },
-      {
-        id: "q3",
-        text: "What was the name of the first artificial satellite launched into space?",
-        options: [
-          { id: "a", text: "Sputnik 1" },
-          { id: "b", text: "Explorer 1" },
-          { id: "c", text: "Vanguard 1" },
-          { id: "d", text: "Apollo 1" },
-        ],
-        correctAnswerId: "a",
-      },
-    ],
-    createdAt: new Date(Date.now() - 172800000).toISOString(),
+    userId: "00176b41-c9af-48b4-b792-ad3128f02ffa",
+    createdAt: "2024-11-06T11:10:21.051Z",
+    updatedAt: "2024-11-06T11:10:21.051Z",
+    Questions: [],
+  },
+  {
+    id: "4",
+    title: "Data Structures Basics",
+    thumbnail: null,
+    description:
+      "Learn about arrays, linked lists, stacks, and trees. Build a strong foundation!",
+    status: "published",
+    userId: "00176b41-c9af-48b4-b792-ad3128f02ffa",
+    createdAt: "2024-11-06T11:10:21.051Z",
+    updatedAt: "2024-11-06T11:10:21.051Z",
+    Questions: [],
+  },
+  {
+    id: "5",
+    title: "Recursion Techniques",
+    thumbnail: defaultThumnail2,
+    description:
+      "Deep dive into recursion, backtracking, and solving problems recursively with efficiency.",
+    status: "draft",
+    userId: "00176b41-c9af-48b4-b792-ad3128f02ffa",
+    createdAt: "2024-11-06T11:10:21.051Z",
+    updatedAt: "2024-11-06T11:10:21.051Z",
+    Questions: [],
+  },
+  {
+    id: "6",
+    title: "Bit Manipulation",
+    thumbnail: null,
+    description:
+      "Understand bitwise operations, masks, and tricks to optimize coding solutions.",
+    status: "draft",
+    userId: "00176b41-c9af-48b4-b792-ad3128f02ffa",
+    createdAt: "2024-11-06T11:10:21.051Z",
+    updatedAt: "2024-11-06T11:10:21.051Z",
+    Questions: [],
   },
 ];
 
@@ -672,36 +648,35 @@ export const defaultUser = {
   role: "user",
 };
 
-
 export const allAchievements = [
   {
     id: 1,
     title: "Beginner Explorer",
     description: "Attempted first quiz",
     unlocked: false,
-    icon: "🌱"
+    icon: "🌱",
   },
   {
     id: 2,
     title: "Perfectionist",
     description: "Scored 100% on a quiz",
     unlocked: false,
-    icon: "🏆"
+    icon: "🏆",
   },
   {
     id: 3,
     title: "Consistent Genius",
     description: "Scored 70%+ in all quizzes",
     unlocked: false,
-    icon: "🧠"
+    icon: "🧠",
   },
   {
     id: 4,
     title: "Master of Quizzes",
     description: "Attempted 3+ quizzes",
     unlocked: false,
-    icon: "👑"
-  }
+    icon: "👑",
+  },
 ];
 
 export const dummyQuizResults = [
@@ -713,7 +688,7 @@ export const dummyQuizResults = [
       total_marks: 60,
     },
     percentage: "100.00",
-    submitted_at: "2025-03-25T10:00:00.000Z"
+    submitted_at: "2025-03-25T10:00:00.000Z",
   },
   {
     attempt_id: "result-4",
@@ -723,8 +698,6 @@ export const dummyQuizResults = [
       total_marks: 20,
     },
     percentage: "75.00",
-    submitted_at: "2025-03-26T10:00:00.000Z"
-  }
+    submitted_at: "2025-03-26T10:00:00.000Z",
+  },
 ];
-
-

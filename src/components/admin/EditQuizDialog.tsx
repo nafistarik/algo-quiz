@@ -27,7 +27,13 @@ export function EditQuizDialog({ quiz, open, onOpenChange }: EditQuizDialogProps
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-
+    const payload = {
+      status,
+      title,
+      description
+    }
+    console.log("Submitting quiz data:", payload)
+    console.log(quiz?.id)
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false)

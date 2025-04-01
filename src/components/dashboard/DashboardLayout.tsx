@@ -5,12 +5,11 @@ import { MdOutlineDashboard } from "react-icons/md";
 import Hamburger from "./Hamburger";
 import SideBar from "./SideBar";
 import { defaultUser } from "@/lib/data";
-import { LucideNotepadText, User } from "lucide-react";
+import { ChartArea, FileQuestion } from "lucide-react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const navRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement);
-
+  const navRef = useRef<HTMLDivElement>(null as unknown as HTMLDivElement)
 
   useEffect(() => {
     if (typeof document === "undefined") return; // Prevents server-side execution
@@ -20,20 +19,18 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         setIsOpen(false);
       }
     }
-  
+    <ChartArea />
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [navRef]);
 
-
   const navLink = [
     { name: "Dashboard", href: "/admin", icon: MdOutlineDashboard },
-    { name: "Courses", href: "/admin/create-quiz", icon: LucideNotepadText },
-    { name: "Users", href: "/admin/analytics", icon: User },
+    { name: "Quiz", href: "/admin/create-quiz", icon: FileQuestion },
+    { name: "Analytics", href: "/admin/analytics", icon: ChartArea },
   ];
-
 
   return (
     <div className="flex ">
@@ -49,7 +46,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="sticky top-[3px] z-40">
           <Hamburger setIsOpen={setIsOpen} isOpen={isOpen} />
         </div>
-        <div className="min-h-screen p-12">{children}</div>
+        <div className="min-h-screen p-4 py-10 lg:p-10">{children}</div>
       </div>
     </div>
   );

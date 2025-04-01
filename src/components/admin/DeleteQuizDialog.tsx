@@ -25,7 +25,7 @@ export function DeleteQuizDialog({ quiz, open, onOpenChange }: DeleteQuizDialogP
 
   const handleDelete = async () => {
     setIsLoading(true)
-
+    console.log(quiz?.id)
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false)

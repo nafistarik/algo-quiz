@@ -47,7 +47,7 @@ export function CreateQuizForm() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl">
       <Tabs value={step} onValueChange={setStep}>
         <TabsList className="grid w-full grid-cols-2 mb-8">
           <TabsTrigger value="details">Quiz Details</TabsTrigger>

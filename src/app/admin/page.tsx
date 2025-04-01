@@ -2,7 +2,6 @@
 
 "use client";
 
-import { AdminSidebar } from "@/components/admin/AdminSidebar";
 import { QuizList } from "@/components/admin/QuizList";
 import { Skeleton } from "@/components/ui/skeleton";
 import { adminQuizzes } from "@/lib/data";
@@ -23,8 +22,8 @@ export default function AdminDashboardPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-background">
-      <main className="flex-1 p-8">
+    <div className="min-h-screen bg-background">
+      <main className="w-full">
         <h1 className="text-3xl font-bold mb-8">Quiz Dashboard</h1>
         {isLoading ? (
           <Skeleton className="h-[600px] w-full rounded-xl" />
