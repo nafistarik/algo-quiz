@@ -91,10 +91,6 @@ Visit: `http://localhost:3000`
 
 - The application is deployed on **Vercel** for seamless performance and scalability.
 
-## 📞 Support
-
-For any issues or feature requests, feel free to raise an issue in the repository or contact the project maintainers.
-
 ---
 
 🎯 **Start Quizzing Now!** 🚀
