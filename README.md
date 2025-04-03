@@ -1,37 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Quiz Application
 
-## Getting Started
+A feature-rich quiz application that allows users to participate in quizzes, track their progress, and view results. Admins can create and manage quizzes, analyze quiz performance, and view leaderboard statistics.
 
-First, run the development server:
+## 🚀 Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **User Authentication** – Secure login and registration system.
+- **Quiz Management** – Admins can create, edit, and delete quizzes.
+- **Question Bank** – Add, update, and remove quiz questions.
+- **User Dashboard** – View quiz history and performance.
+- **Leaderboard** – Track top performers.
+- **Quiz Analytics** – Admin dashboard for tracking quiz statistics.
+- **Light/Dark Mode** – Toggle between themes.
+- **Responsive Design** – Optimized for all screen sizes.
+
+## 📌 Usage Instructions
+
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/nafistarik/algo-quiz.git
+cd algo-quiz
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2️⃣ Install Dependencies
+```sh
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3️⃣ Start the Development Server
+```sh
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4️⃣ Open in Browser
+Visit: `http://localhost:3000`
 
-## Learn More
+## 🛠️ Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+- **Frontend:** Next.js 15, React.js, TypeScript, Tailwind CSS
+- **State Management:** React.js, RTK Query
+- **Authentication:** JWT Authentication
+- **Data Visualization:** Recharts (for analytics)
+- **Deployment:** Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📂 Project Structure
+```bash
+📦 quiz-platform
+├── 📂 components    # Reusable UI components
+├── 📂 pages         # Next.js pages
+├── 📂 styles        # Global and component-specific styles
+├── 📂 utils         # Helper functions
+└── package.json     # Dependencies and scripts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📌 Application Pages & Features
 
-## Deploy on Vercel
+### **1️⃣ Home Page**
+- Hero section with CTA to start quizzes.
+- List of available quizzes with filtering and search.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### **2️⃣ Authentication Pages**
+- **Login & Signup:** Secure user authentication.
+- **User Roles:** Users and Admins.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# algo-quiz
+### **3️⃣ Quiz Page**
+- Displays quiz questions one at a time.
+- Timer for each quiz attempt.
+- Tracks correct and incorrect answers.
+
+### **4️⃣ Results & Leaderboard**
+- View quiz performance after completion.
+- Leaderboard ranking top users.
+
+### **5️⃣ Admin Dashboard**
+- **Manage Quizzes:** Create, edit, delete quizzes.
+- **Quiz Analytics:** Track total attempts, scores, and performance trends.
+- **User Management:** View and manage registered users.
+
+### **6️⃣ User Dashboard**
+- View completed quizzes and scores.
+- Access detailed quiz history.
+
+## ⚙️ Additional Features
+
+- **Modals for Creating & Editing Quizzes** – Avoids unnecessary page reloads.
+- **Animations & Transitions** – Smooth UI experience.
+- **API Handling with RTK Query** – Efficient state and data management.
+- **Accessibility Support** – Keyboard and screen-reader friendly.
+
+## 📌 Deployment
+
+- The application is deployed on **Vercel** for seamless performance and scalability.
+
+## 📞 Support
+
+For any issues or feature requests, feel free to raise an issue in the repository or contact the project maintainers.
+
+---
+
+🎯 **Start Quizzing Now!** 🚀
+
