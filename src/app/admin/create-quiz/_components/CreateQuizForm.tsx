@@ -11,14 +11,13 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { QuestionForm } from "@/components/admin/QuestionForm"
+import { QuestionForm } from "@/app/admin/create-quiz/_components/QuestionForm"
 import { useRouter } from "next/navigation"
 
 export function CreateQuizForm() {
   const [step, setStep] = useState("details")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [timeLimit, setTimeLimit] = useState("10")
   const [questions, setQuestions] = useState<any[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
@@ -83,17 +82,6 @@ export function CreateQuizForm() {
                     rows={4}
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="timeLimit">Time Limit (minutes)</Label>
-                  <Input
-                    id="timeLimit"
-                    type="number"
-                    min="1"
-                    max="60"
-                    value={timeLimit}
-                    onChange={(e) => setTimeLimit(e.target.value)}
-                  />
-                </div>
               </form>
             </CardContent>
             <CardFooter>
@@ -141,15 +129,15 @@ export function CreateQuizForm() {
                           </div>
                         </CardHeader>
                         <CardContent className="py-2">
-                          <p>{question.text}</p>
+                          <p>Q: {question.text}</p>
                           <div className="mt-2 space-y-1">
                             {question.options.map((option: any, optIndex: number) => (
                               <div
                                 key={optIndex}
                                 className={`p-2 rounded-md text-sm ${
                                   option.id === question.correctAnswerId
-                                    ? "bg-green-500/10 border-green-500/20 border"
-                                    : "bg-muted/30"
+                                    ? "bg-green-500/20 border-green-500/30 border"
+                                    : "bg-muted"
                                 }`}
                               >
                                 {option.text}
@@ -166,14 +154,6 @@ export function CreateQuizForm() {
                 )}
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" onClick={() => setStep("details")}>
-                Back to Details
-              </Button>
-              <Button onClick={handleSubmit} disabled={questions.length === 0 || isLoading}>
-                {isLoading ? "Creating Quiz..." : "Create Quiz"}
-              </Button>
-            </CardFooter>
           </Card>
         </TabsContent>
       </Tabs>

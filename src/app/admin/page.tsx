@@ -2,7 +2,7 @@
 
 "use client";
 
-import { QuizList } from "@/components/admin/QuizList";
+import { QuizList } from "@/app/admin/_components/QuizList";
 import { Skeleton } from "@/components/ui/skeleton";
 import { adminQuizzes } from "@/lib/data";
 import { useEffect, useState } from "react";

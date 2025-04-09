@@ -1,6 +1,6 @@
 "use client";
 
-import { CreateQuizForm } from "@/components/admin/CreateQuizForm";
+import { CreateQuizForm } from "@/app/admin/create-quiz/_components/CreateQuizForm";
 
 export default function CreateQuizPage() {
   return (

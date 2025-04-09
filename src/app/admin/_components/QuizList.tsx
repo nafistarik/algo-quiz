@@ -2,15 +2,7 @@
 
 "use client";
 
-import { useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,12 +18,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { MoreHorizontal, Search, Plus } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { MoreHorizontal, Plus, Search } from "lucide-react";
 import Link from "next/link";
-import { EditQuizDialog } from "./EditQuizDialog";
+import { useState } from "react";
 import { DeleteQuizDialog } from "./DeleteQuizDialog";
-import EmptyStateMessage from "../EmptyStateMessage";
+import { EditQuizDialog } from "./EditQuizDialog";
+import EmptyStateMessage from "../../../components/EmptyStateMessage";
 
 interface QuizListProps {
   quizzes: any[];
