@@ -1,86 +1,72 @@
-/* eslint-disable */
 "use client"
 
-import type React from "react"
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface QuestionFormProps {
-  onAddQuestion: (question: any) => void
-  editingQuestion?: any
+  formData: {
+    question: string;
+    options: string[];
+    correctAnswer: string;
+  };
+  isEditing: boolean;
+  isSubmitting: boolean;
+  onQuestionChange: (value: string) => void;
+  onOptionChange: (index: number, value: string) => void;
+  onCorrectAnswerChange: (value: string) => void;
+  onSubmit: () => void;
+  onCancel: () => void;
 }
 
-export function QuestionForm({ onAddQuestion, editingQuestion }: QuestionFormProps) {
-  const [questionText, setQuestionText] = useState(editingQuestion?.text || "")
-  const [options, setOptions] = useState(
-    editingQuestion?.options || [
-      { id: "1", text: "" },
-      { id: "2", text: "" },
-      { id: "3", text: "" },
-      { id: "4", text: "" },
-    ],
-  )
-  const [correctAnswerId, setCorrectAnswerId] = useState(editingQuestion?.correctAnswerId || "1")
-
-  const handleOptionChange = (index: number, text: string) => {
-    setOptions((prev: any ) => prev.map((opt: any , i: any ) => (i === index ? { ...opt, text } : opt)))
-  }
-
+export function QuestionForm({
+  formData,
+  isEditing,
+  isSubmitting,
+  onQuestionChange,
+  onOptionChange,
+  onCorrectAnswerChange,
+  onSubmit,
+  onCancel
+}: QuestionFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const question = {
-      id: editingQuestion?.id || `question-${Date.now()}`,
-      text: questionText,
-      options,
-      correctAnswerId,
-    }
-    onAddQuestion(question)
-    resetForm()
-  }
-
-  const resetForm = () => {
-    setQuestionText("")
-    setOptions([
-      { id: "1", text: "" },
-      { id: "2", text: "" },
-      { id: "3", text: "" },
-      { id: "4", text: "" },
-    ])
-    setCorrectAnswerId("1")
-  }
+    e.preventDefault();
+    onSubmit();
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <Label htmlFor="questionText">Question</Label>
-        <Textarea
-          id="questionText"
+        <Label htmlFor="question">Question</Label>
+        <Input
+          id="question"
           placeholder="Enter your question"
-          value={questionText}
-          onChange={(e) => setQuestionText(e.target.value)}
+          value={formData.question}
+          onChange={(e) => onQuestionChange(e.target.value)}
           required
-          rows={2}
         />
       </div>
 
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <Label>Answer Options</Label>
-        </div>
-
-        <RadioGroup value={correctAnswerId} onValueChange={setCorrectAnswerId} className="space-y-3">
-          {options.map((option: any , index: any ) => (
+        <Label>Answer Options</Label>
+        <RadioGroup 
+          value={formData.correctAnswer} 
+          onValueChange={onCorrectAnswerChange} 
+          className="space-y-3"
+        >
+          {formData.options.map((option, index) => (
             <div key={index} className="flex items-center space-x-2">
-              <RadioGroupItem value={option.id} id={`option-${index}`} />
+              <RadioGroupItem 
+                value={option} 
+                id={`option-${index}`} 
+                disabled={option.trim() === ""}
+              />
               <div className="flex-1">
                 <Input
                   placeholder={`Option ${index + 1}`}
-                  value={option.text}
-                  onChange={(e) => handleOptionChange(index, e.target.value)}
+                  value={option}
+                  onChange={(e) => onOptionChange(index, e.target.value)}
                   required
                 />
               </div>
@@ -89,8 +75,21 @@ export function QuestionForm({ onAddQuestion, editingQuestion }: QuestionFormPro
         </RadioGroup>
       </div>
 
-      <Button type="submit">{editingQuestion ? "Update Question" : "Add Question"}</Button>
+      <div className="flex gap-2">
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : isEditing ? "Update Question" : "Add Question"}
+        </Button>
+        {isEditing && (
+          <Button 
+            type="button" 
+            variant="outline"
+            onClick={onCancel}
+            disabled={isSubmitting}
+          >
+            Cancel
+          </Button>
+        )}
+      </div>
     </form>
-  )
+  );
 }
-
