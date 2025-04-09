@@ -29,7 +29,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const navLink = [
     { name: "Dashboard", href: "/admin", icon: MdOutlineDashboard },
     { name: "Quiz", href: "/admin/create-quiz", icon: FileQuestion },
-    { name: "Analytics", href: "/admin/analytics", icon: ChartArea },
+    // { name: "Analytics", href: "/admin/analytics", icon: ChartArea },
   ];
 
   return (
