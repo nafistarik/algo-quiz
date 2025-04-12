@@ -47,9 +47,6 @@ export default function CreateQuizPage() {
   const handleQuestionSubmit = async () => {
     setIsSubmittingQuestion(true);
 
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
     if (editingQuestionId) {
       // Update existing question
       console.log(
@@ -82,7 +79,6 @@ export default function CreateQuizPage() {
       ]);
     }
 
-    // Reset form and editing state
     resetForm();
     setIsSubmittingQuestion(false);
   };
