@@ -66,7 +66,7 @@ export function LoginForm() {
               required
             />
           </div>
-          <Button type="submit" className="w-full" disabled={isLoading}>
+          <Button type="submit" className="w-full bg-darkPrimary hover:bg-buttonHoverDark" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Login"}
           </Button>
         </form>
@@ -74,7 +74,7 @@ export function LoginForm() {
       <CardFooter className="flex flex-col items-center gap-4">
         <div className="text-sm text-muted-foreground">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-primary hover:underline">
+          <Link href="/register" className="text-darkPrimary hover:underline">
             Sign up
           </Link>
         </div>

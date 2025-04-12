@@ -71,7 +71,7 @@ export function RegisterForm() {
               required
             />
           </div>
-          <Button type="submit" className="w-full" disabled={isLoading}>
+          <Button type="submit" className="w-full bg-darkPrimary hover:bg-buttonHoverDark" disabled={isLoading}>
             {isLoading ? "Creating account..." : "Create account"}
           </Button>
         </form>
@@ -79,7 +79,7 @@ export function RegisterForm() {
       <CardFooter className="flex flex-col items-center gap-4">
         <div className="text-sm text-muted-foreground">
           Already have an account?{" "}
-          <Link href="/login" className="text-primary hover:underline">
+          <Link href="/login" className="text-darkPrimary hover:underline">
             Login
           </Link>
         </div>

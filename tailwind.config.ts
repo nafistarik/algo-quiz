@@ -72,6 +72,8 @@ const config = {
         softPrimaryLight: "#ed958d",
         borderColor: "#80808033",
         toggleBg: "#6b728033",
+        darkPrimary: "#0077b6",
+        lightPrimary: "#EC4636",
       },
       borderRadius: {
         lg: "var(--radius)",

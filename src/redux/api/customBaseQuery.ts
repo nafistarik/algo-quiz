@@ -1,13 +1,16 @@
 /* eslint-disable */
-import { fetchBaseQuery, FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
+import {
+  fetchBaseQuery,
+  FetchBaseQueryError,
+} from "@reduxjs/toolkit/query/react";
 import type { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { removeUser, setUser } from "../slice/userSlice";
 
-const BASEAPI = "https://course-platform-api-kkbn.onrender.com/api"
+const BASEAPI = "https://course-platform-api-kkbn.onrender.com/api";
 
 const rawBaseQuery = fetchBaseQuery({
   baseUrl: BASEAPI,
-  prepareHeaders: (headers, { }) => {
+  prepareHeaders: (headers, {}) => {
     const token = localStorage.getItem("accessToken");
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
@@ -16,11 +19,11 @@ const rawBaseQuery = fetchBaseQuery({
   },
 });
 
-export const baseQueryWithReauth: BaseQueryFn<any, unknown, FetchBaseQueryError> = async (
-  args,
-  api,
-  extraOptions
-) => {
+export const baseQueryWithReauth: BaseQueryFn<
+  any,
+  unknown,
+  FetchBaseQueryError
+> = async (args, api, extraOptions) => {
   let result = await rawBaseQuery(args, api, extraOptions);
 
   if (result.error && result.error.status === 401) {
@@ -42,7 +45,11 @@ export const baseQueryWithReauth: BaseQueryFn<any, unknown, FetchBaseQueryError>
     );
 
     if (refreshResult?.data?.accessToken) {
-      const { accessToken, refreshToken: newRefreshToken, user } = refreshResult.data;
+      const {
+        accessToken,
+        refreshToken: newRefreshToken,
+        user,
+      } = refreshResult.data;
 
       localStorage.setItem("accessToken", accessToken);
       if (newRefreshToken) {
