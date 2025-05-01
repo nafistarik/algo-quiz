@@ -3,14 +3,14 @@
 // import { removeUser } from "@/redux/slice/userSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { IoLogOutOutline } from "react-icons/io5";
+import { usePathname } from "next/navigation";
+// import { IoLogOutOutline } from "react-icons/io5";
 // import { useDispatch } from "react-redux";
 // import { toast } from "sonner";
 import logo from "@/assets/images/home/logo.png";
-import { useAppDispatch } from "@/redux/hooks";
-import { removeUser } from "@/redux/slice/userSlice";
-import { toast } from "sonner";
+// import { useAppDispatch } from "@/redux/hooks";
+// import { removeUser } from "@/redux/slice/userSlice";
+// import { toast } from "sonner";
 export default function MainNavLink({
   navLink,
 }: {
@@ -30,14 +30,14 @@ export default function MainNavLink({
 
     return cleanPathname.startsWith(cleanHref);
   };
-  
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-  const handleLogOut = () => {
-    dispatch(removeUser());
-    toast.success("Logout successfully");
-    router.push("/login");
-  };
+
+  // const dispatch = useAppDispatch();
+  // const router = useRouter();
+  // const handleLogOut = () => {
+  //   dispatch(removeUser());
+  //   toast.success("Logout successfully");
+  //   router.push("/login");
+  // };
 
   return (
     <div className="flex flex-col min-h-screen py-6 relative bg-muted">
@@ -76,15 +76,15 @@ export default function MainNavLink({
           )}
         </div>
       </nav>
-      <div className="mt-auto px-8 py-8 space-y-1">
+      {/* <div className="mt-auto px-8 py-8 space-y-1">
         <button
           onClick={handleLogOut}
-          className="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer text-foreground hover:text-primary transition-all duration-100 ease-in bg-background w-full font-medium text-base"
+          className="flex items-center  gap-3 px-4 py-3 rounded-xl cursor-pointer text-foreground hover:text-primary transition-all duration-100 ease-in bg-primary w-full font-medium text-base"
         >
           <IoLogOutOutline className="min-w-6 min-h-6" />
           Log Out
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

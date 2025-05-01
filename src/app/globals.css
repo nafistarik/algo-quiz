@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+
 @layer base {
   :root {
     --background: #ffffff;
@@ -25,6 +27,7 @@
     --input: #e6e0dc;
     --ring: #EC4636;
     --radius: 0.5rem;
+    --font-nunito: 'Nunito', sans-serif;
 
     /* Chart Colors */
     --chart-1: #EC4636;
@@ -62,6 +65,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-nunito);
+    font-weight: 400; /* Regular weight for body text */
+    line-height: 1.6;
   }
 }
 

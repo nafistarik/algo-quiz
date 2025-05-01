@@ -1,11 +1,11 @@
 "use client";
 
-import EmptyStateMessage from "../../../components/EmptyStateMessage";
-import RecentQuizCard from "../../../components/home/RecentQuizCard";
-import { useGetUserQuizzesQuery } from "@/redux/features/userQuizApi";
-import Loading from "@/components/Loading";
 import ErrorMessage from "@/components/ErrorMessage";
+import Loading from "@/components/Loading";
 import { Quiz } from "@/lib/types";
+import { useGetUserQuizzesQuery } from "@/redux/features/userQuizApi";
+import EmptyStateMessage from "../../../components/EmptyStateMessage";
+import RecentQuizCard from "./RecentQuizCard";
 
 export function QuizHistoryList() {
   const {

@@ -27,7 +27,7 @@ export default function QuizCard({ quiz }: { quiz: Quiz }) {
           </div>
         )}
         <div className="flex-1 flex flex-col justify-between">
-          <CardContent className="p-4">
+          <CardContent className="p-0">
             <div>
               <h3 className="text-xl font-bold text-foreground mb-2">
                 {quiz.title}

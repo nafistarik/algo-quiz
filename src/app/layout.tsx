@@ -1,13 +1,10 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import ReduxProvider from "@/redux/ReduxProvider";
 import { ToastProvider } from "@/components/ToastProvider";
 import CustomCursor from "@/components/CustomCursor";
-
-const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["500", "700"] });
 
 export const metadata: Metadata = {
   title: "AlgoQuiz",
@@ -21,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={ubuntu.className}>
+      <body >
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

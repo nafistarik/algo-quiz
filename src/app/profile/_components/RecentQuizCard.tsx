@@ -1,9 +1,9 @@
-import { Card, CardContent } from "../ui/card";
-import Image from "next/image";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import { ExternalLink } from "lucide-react";
 import { Quiz } from "@/lib/types";
+import { ExternalLink } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "../../../components/ui/button";
+import { Card, CardContent } from "../../../components/ui/card";
 
 export default function RecentQuizCard({ quiz }: { quiz: Quiz }) {
   return (
