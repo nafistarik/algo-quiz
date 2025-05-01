@@ -1,4 +1,3 @@
-/* eslint-disable */
 "use client"
 
 import { Button } from "@/components/ui/button"
@@ -6,9 +5,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Question } from "@/lib/types"
 
 interface QuizContentProps {
-  question: any
+  question: Question
   questionIndex: number
   totalQuestions: number
   selectedAnswer: string | undefined
@@ -26,6 +26,7 @@ export function QuizContent({
   onNextQuestion,
   onPrevQuestion,
 }: QuizContentProps) {
+
   return (
     <div className="flex-1 p-6 md:p-10">
       <div className="max-w-3xl">
@@ -33,22 +34,22 @@ export function QuizContent({
           <span className="text-sm text-muted-foreground">
             Question {questionIndex + 1} of {totalQuestions}
           </span>
-          <h2 className="text-2xl font-bold mt-2">{question.text}</h2>
+          <h2 className="text-2xl font-bold mt-2">{question.question}</h2>
         </div>
 
         <Card>
           <CardContent className="pt-6">
             <RadioGroup value={selectedAnswer} onValueChange={onAnswerSelect} className="space-y-4 ">
-              {question.options.map((option: any) => (
+              {question.options.map((option: string) => (
                 <div
-                  key={option.id}
+                  key={option}
                   className={`flex items-center space-x-2 rounded-lg border py-2 px-4 transition-all duration-300 ease-in-out ${
-                    selectedAnswer === option.id ? "border-primary bg-primary" : "hover:bg-muted"
+                    selectedAnswer === option ? "border-primary bg-primary" : "hover:bg-muted"
                   }`}
                 >
-                  <RadioGroupItem value={option.id} id={option.id} className="mt-0" />
-                  <Label htmlFor={option.id} className="flex-1 cursor-pointer py-2">
-                    {option.text}
+                  <RadioGroupItem value={option} id={option} className="mt-0" />
+                  <Label htmlFor={option} className="flex-1 cursor-pointer py-2">
+                    {option}
                   </Label>
                 </div>
               ))}

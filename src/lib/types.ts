@@ -17,28 +17,26 @@ export interface Quiz {
   title: string;
   description: string;
   status?: string;
-  questionCount: number;
+  total_questions: number;
   questions: Question[];
   createdAt: string;
   thumbnail?: string | StaticImageData | null;
-  totalAttempts?: number | null | undefined;
+  is_attempted?: boolean;
 }
 
 export interface Question {
   id: string;
-  text: string;
-  options: {
-    id: string;
-    text: string;
-  }[];
+  question: string;
+  options: string[];
   correctAnswer?: string | null;
   submittedAnswer?: string | null;
+  marks? : string | number;
   isCorrect?: boolean;
 }
 
 export interface MergedResult {
   id: string;
-  quizId?: string;
+  title?: string;
   quizTitle?: string;
   totalQuestions?: number;
   correctAnswers?: number;

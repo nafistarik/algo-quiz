@@ -1,4 +1,3 @@
-import React from "react";
 import { Card, CardContent } from "../ui/card";
 import Image from "next/image";
 import { Button } from "../ui/button";
@@ -28,7 +27,7 @@ export default function RecentQuizCard({ quiz }: { quiz: Quiz }) {
             <h3 className="font-medium">{quiz.title}</h3>
             <p className="text-sm text-muted-foreground">
               <span className="hidden sm:inline">Total</span> Questions:{" "}
-              {quiz.questionCount}
+              {quiz.total_questions}
             </p>
           </div>
         </div>

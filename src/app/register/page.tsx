@@ -1,13 +1,13 @@
-import { RegisterForm } from "@/components/auth/RegisterForm";
 import Image from "next/image";
 import Link from "next/link";
 import signin from "@/assets/images/auth/mobile-login-animate.svg";
+import { RegisterForm } from "./_components/RegisterForm";
 
 export default function RegisterPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background container">
       <main className="flex-1 flex flex-col-reverse md:flex-row">
-        <div className="w-full md:w-1/2 flex items-center justify-center p-8">
+        <div className="w-full md:w-1/2 flex items-center justify-center">
           <RegisterForm />
         </div>
         <div className="hidden md:flex md:w-1/2 flex-col items-center justify-center p-10 relative">

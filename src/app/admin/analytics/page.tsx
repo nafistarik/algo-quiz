@@ -23,7 +23,6 @@ export default function AnalyticsPage() {
 
   return (
     <div className=" min-h-screen bg-background">
-      {/* <AdminSidebar /> */}
       <main className="">
         <h1 className="text-3xl font-bold mb-8">Quiz Analytics</h1>
         {isLoading ? (

@@ -1,6 +1,5 @@
 /* eslint-disable */
-
-"use client"
+"use client";
 
 import {
   AlertDialog,
@@ -11,27 +10,39 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
-import { useState } from "react"
+} from "@/components/ui/alert-dialog";
+
+import { useDeleteQuizMutation } from "@/redux/features/quizManagementApi";
+import { toast } from "sonner";
 
 interface DeleteQuizDialogProps {
-  quiz: any
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  quiz: any;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
-export function DeleteQuizDialog({ quiz, open, onOpenChange }: DeleteQuizDialogProps) {
-  const [isLoading, setIsLoading] = useState(false)
+export function DeleteQuizDialog({
+  quiz,
+  open,
+  onOpenChange,
+}: DeleteQuizDialogProps) {
+  const [deleteQuiz, { isLoading }] = useDeleteQuizMutation();
 
   const handleDelete = async () => {
-    setIsLoading(true)
-    console.log(quiz?.id)
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false)
-      onOpenChange(false)
-    }, 1000)
-  }
+    try {
+      const response = await deleteQuiz({ id: quiz?.id }).unwrap();
+      if (response) {
+        toast.success("Quiz deleted successfully!");
+        onOpenChange(false);
+      }
+    } catch (error: any) {
+      if (error.data?.message) {
+        toast.error(error.data.message);
+      } else {
+        toast.error("An error occurred while deleting the quiz.");
+      }
+    }
+  };
 
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
@@ -39,18 +50,21 @@ export function DeleteQuizDialog({ quiz, open, onOpenChange }: DeleteQuizDialogP
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This will permanently delete the quiz &quot;{quiz.title}&quot; and all associated questions and results.
-            This action cannot be undone.
+            This will permanently delete the quiz &quot;{quiz.title}&quot; and
+            all associated questions and results. This action cannot be undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleDelete} disabled={isLoading} className="bg-red-500 hover:bg-red-600">
+          <AlertDialogAction
+            onClick={handleDelete}
+            disabled={isLoading}
+            className="bg-red-500 hover:bg-red-600"
+          >
             {isLoading ? "Deleting..." : "Delete"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  )
+  );
 }
-

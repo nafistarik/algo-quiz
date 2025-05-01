@@ -1,7 +1,7 @@
-import { LoginForm } from "@/components/auth/LoginForm";
+import { LoginForm } from "@/app/login/_components/LoginForm";
+import login from "@/assets/images/auth/mobile-login-animate.svg";
 import Image from "next/image";
 import Link from "next/link";
-import login from "@/assets/images/auth/mobile-login-animate.svg";
 
 export default function LoginPage() {
   return (

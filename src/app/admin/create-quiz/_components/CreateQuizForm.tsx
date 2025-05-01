@@ -23,6 +23,7 @@ export function CreateQuizForm({
   onSubmit,
   isSubmitting,
 }: CreateQuizFormProps) {
+  
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -59,6 +60,7 @@ export function CreateQuizForm({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
+              required
             />
           </div>
           <CardFooter className="p-0 pt-4">

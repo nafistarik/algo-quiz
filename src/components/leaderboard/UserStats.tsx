@@ -73,7 +73,7 @@ export function UserStats({
                 {leaderBoardData?.quiz.total_marks}
               </span>
             </div>
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
               <span className="text-muted-foreground">Average Score</span>
               <span className="font-medium">
                 {leaderBoardData?.stats.average_score}
@@ -90,7 +90,7 @@ export function UserStats({
               <span className="font-medium text-red-500">
                 {leaderBoardData?.stats.lowest_score}
               </span>
-            </div>
+            </div> */}
             <div className="flex justify-between">
               <span className="text-muted-foreground">Total Participants</span>
               <span className="font-medium">

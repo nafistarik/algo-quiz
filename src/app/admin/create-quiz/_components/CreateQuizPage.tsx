@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import { useState } from "react";
@@ -6,6 +7,13 @@ import { CreateQuizForm } from "./CreateQuizForm";
 import { QuestionForm } from "./QuestionForm";
 import { QuestionList } from "./QuestionList";
 import { QuizDetails } from "@/lib/types";
+import { useCreateQuizMutation } from "@/redux/features/quizManagementApi";
+import { toast } from "sonner";
+import {
+  useCreateQuestionMutation,
+  useDeleteQuestionMutation,
+  useUpdateQuestionMutation,
+} from "@/redux/features/questionApi";
 
 interface QuestionData {
   questionId: string;
@@ -17,70 +25,114 @@ interface QuestionData {
 export default function CreateQuizPage() {
   const [step, setStep] = useState<"details" | "questions">("details");
   const [quizId, setQuizId] = useState<string | null>(null);
-  const [isCreatingQuiz, setIsCreatingQuiz] = useState(false);
-  const [isSubmittingQuestion, setIsSubmittingQuestion] = useState(false);
   const [questions, setQuestions] = useState<QuestionData[]>([]);
 
-  // Form state managed by parent
   const [formData, setFormData] = useState({
     question: "",
     options: ["", "", "", ""],
     correctAnswer: "",
   });
-  const [editingQuestionId, setEditingQuestionId] = useState<string | null>(
+
+  const [editingQuestion, setEditingQuestion] = useState<QuestionData | null>(
     null
   );
 
-  const handleCreateQuiz = async (data: QuizDetails) => {
-    setIsCreatingQuiz(true);
-    console.log("POST /quizzes", data);
+  const [createQuiz, { isLoading }] = useCreateQuizMutation();
+  const [createQuestion, { isLoading: questionCreateLoading }] =
+    useCreateQuestionMutation();
+  const [updateQuestion, { isLoading: questionUpdateLoading }] =
+    useUpdateQuestionMutation();
+  const [deleteQuestion, { isLoading: questionDeleteLoading }] =
+    useDeleteQuestionMutation();
 
-    setTimeout(() => {
-      const mockQuizId = `QUIZ_${Math.random().toString(36).substring(2, 9)}`;
-      console.log("Received quiz ID:", mockQuizId);
-      setQuizId(mockQuizId);
-      setIsCreatingQuiz(false);
+  const resetForm = () => {
+    setFormData({
+      question: "",
+      options: ["", "", "", ""],
+      correctAnswer: "",
+    });
+    setEditingQuestion(null);
+  };
+
+  const handleCreateQuiz = async (data: QuizDetails) => {
+    try {
+      const response = await createQuiz(data);
+      toast.success("Quiz created successfully");
+      setQuizId(response.data.data.id);
       setStep("questions");
-    }, 1000);
+    } catch (error: any) {
+      if (error?.status === 401) {
+        toast.error("Session expired. Please login again.");
+      } else {
+        toast.error(
+          error?.data?.message ||
+            error?.error ||
+            "Failed to create quiz. Please try again."
+        );
+      }
+    }
   };
 
   const handleQuestionSubmit = async () => {
-    setIsSubmittingQuestion(true);
-
-    if (editingQuestionId) {
-      // Update existing question
-      console.log(
-        `PUT /quizzes/${quizId}/questions/${editingQuestionId}`,
-        formData
-      );
-
-      setQuestions((prev) =>
-        prev.map((q) =>
-          q.questionId === editingQuestionId
-            ? {
-                ...q,
-                ...formData,
-                questionId: editingQuestionId,
-              }
-            : q
-        )
-      );
+    if (editingQuestion) {
+      try {
+        await updateQuestion({
+          id: editingQuestion.questionId,
+          data: formData,
+        });
+        setQuestions((prev) =>
+          prev.map((q) =>
+            q.questionId === editingQuestion.questionId
+              ? {
+                  ...q,
+                  ...formData,
+                  questionId: editingQuestion.questionId,
+                }
+              : q
+          )
+        );
+        toast.success("Question updated successfully");
+      } catch (error: any) {
+        if (error?.status === 401) {
+          toast.error("Session expired. Please login again.");
+        } else {
+          toast.error(error?.data?.message || "Failed to update question.");
+        }
+      } finally {
+        resetForm();
+      }
     } else {
-      // Add new question
-      console.log(`POST /quizzes/${quizId}/questions`, formData);
+      try {
+        const response = await createQuestion({
+          id: quizId,
+          data: formData,
+        });
 
-      const questionId = `Q_${Math.random().toString(36).substring(2, 9)}`;
-      setQuestions((prev) => [
-        ...prev,
-        {
-          ...formData,
-          questionId,
-        },
-      ]);
+        setQuestions((prev) => [
+          ...prev,
+          {
+            ...formData,
+            questionId: response.data.data.id,
+          },
+        ]);
+        toast.success("Question added successfully");
+
+        resetForm();
+      } catch (error: any) {
+        if (error?.status === 401) {
+          toast.error("Session expired. Please login again.");
+        } else if (error.message === "No quiz selected") {
+          toast.error(error.message);
+        } else {
+          toast.error(
+            error?.data?.message ||
+              "Failed to create question. Please check your inputs."
+          );
+        }
+      } finally {
+        resetForm();
+      }
     }
-
-    resetForm();
-    setIsSubmittingQuestion(false);
   };
 
   const handleEditQuestion = (id: string) => {
@@ -91,22 +143,27 @@ export default function CreateQuizPage() {
         options: [...questionToEdit.options],
         correctAnswer: questionToEdit.correctAnswer,
       });
-      setEditingQuestionId(id);
+      setEditingQuestion(questionToEdit);
     }
   };
 
-  const handleDeleteQuestion = (id: string) => {
-    console.log(`DELETE /quizzes/${quizId}/questions/${id}`);
-    setQuestions((prev) => prev.filter((q) => q.questionId !== id));
-  };
-
-  const resetForm = () => {
-    setFormData({
-      question: "",
-      options: ["", "", "", ""],
-      correctAnswer: "",
-    });
-    setEditingQuestionId(null);
+  const handleDeleteQuestion = async (id: string) => {
+    try {
+      await deleteQuestion({ id });
+      setQuestions((prev) => prev.filter((q) => q.questionId !== id));
+      toast.success("Question deleted successfully");
+    } catch (error: any) {
+      if (error?.status === 401) {
+        toast.error("Session expired. Please login again.");
+      } else if (error?.status === 404) {
+        toast.error("Question already deleted");
+      } else {
+        toast.error(
+          error?.data?.message || 
+          "Failed to delete question. Please try again."
+        );
+      }
+    }
   };
 
   const updateFormField = (field: string, value: string) => {
@@ -119,7 +176,6 @@ export default function CreateQuizPage() {
     setFormData((prev) => ({
       ...prev,
       options: newOptions,
-      // Update correctAnswer if the edited option was the correct one
       correctAnswer:
         prev.correctAnswer === prev.options[index] ? value : prev.correctAnswer,
     }));
@@ -143,7 +199,7 @@ export default function CreateQuizPage() {
         <TabsContent value="details">
           <CreateQuizForm
             onSubmit={handleCreateQuiz}
-            isSubmitting={isCreatingQuiz}
+            isSubmitting={isLoading}
           />
         </TabsContent>
 
@@ -151,8 +207,8 @@ export default function CreateQuizPage() {
           <div className="space-y-6">
             <QuestionForm
               formData={formData}
-              isEditing={!!editingQuestionId}
-              isSubmitting={isSubmittingQuestion}
+              isEditing={questionUpdateLoading}
+              isSubmitting={questionCreateLoading}
               onQuestionChange={(value) => updateFormField("question", value)}
               onOptionChange={updateOption}
               onCorrectAnswerChange={(value) =>
@@ -160,12 +216,14 @@ export default function CreateQuizPage() {
               }
               onSubmit={handleQuestionSubmit}
               onCancel={resetForm}
+              editMode={!!editingQuestion}
             />
 
             <QuestionList
               questions={questions}
               onEdit={handleEditQuestion}
               onDelete={handleDeleteQuestion}
+              isDeleting={questionDeleteLoading}
             />
           </div>
         </TabsContent>

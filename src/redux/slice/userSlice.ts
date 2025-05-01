@@ -7,15 +7,16 @@ interface UserState {
 
 const initialState: UserState = {
   user: null,
-};
+}
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload.data; 
+      state.user = action.payload.user; 
       // state.user = {name : 'John Doe', email: 'john@example.com', accessToken: 'your-access-token'}
-      const accessToken = action.payload.data?.accessToken;
+      const accessToken = action.payload.tokens?.accessToken;
       if (typeof window !== "undefined") {
         localStorage.setItem("accessToken", accessToken);
       }

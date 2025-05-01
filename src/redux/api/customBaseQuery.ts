@@ -6,7 +6,7 @@ import {
 import type { BaseQueryFn } from "@reduxjs/toolkit/query";
 import { removeUser, setUser } from "../slice/userSlice";
 
-const BASEAPI = "https://course-platform-api-kkbn.onrender.com/api";
+const BASEAPI = "http://localhost:5000/api";
 
 const rawBaseQuery = fetchBaseQuery({
   baseUrl: BASEAPI,

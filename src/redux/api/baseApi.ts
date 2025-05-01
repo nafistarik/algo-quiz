@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const BASEAPI = "https://course-platform-api-kkbn.onrender.com/api"
+const BASEAPI = "http://localhost:5000/api"
 
 export const baseApi = createApi({
   reducerPath: "api",
@@ -9,7 +9,7 @@ export const baseApi = createApi({
     prepareHeaders: (headers: Headers) => {
       const token = localStorage.getItem("accessToken");
       if (token) {
-        headers.set("authorization", ` ${token}`);
+        headers.set("authorization", `Bearer ${token}`);
       }
       return headers;
     },
@@ -17,6 +17,8 @@ export const baseApi = createApi({
   endpoints: () => ({}),
   tagTypes: [
     "Auth",
+    "Quiz",
+    "Questions",
   ],
 });
 export const {} = baseApi;

@@ -24,7 +24,7 @@ export function DetailedResults({ result }: { result: MergedResult | null }) {
                   <span className="text-sm text-muted-foreground">
                     Question {index + 1}
                   </span>
-                  <h3 className="font-medium">{question.text}</h3>
+                  <h3 className="font-medium">{question.question}</h3>
                 </div>
                 {question.isCorrect ? (
                   <div className="flex items-center text-green-500 bg-green-500/10 px-3 py-1 rounded-full text-sm">
@@ -39,30 +39,30 @@ export function DetailedResults({ result }: { result: MergedResult | null }) {
                 )}
               </div>
               <div className="p-4 space-y-2">
-                {question.options.map((option: any) => (
+                {question.options.map((option: any, index: number) => (
                   <div
-                    key={option.id}
+                    key={index}
                     className={`p-2 px-4 rounded-md flex items-center ${
-                      option.text === question.correctAnswer
+                      option === question.correctAnswer
                         ? "bg-green-500/40 "
-                        : option.text === question.submittedAnswer &&
-                          option.text !== question.correctAnswer
+                        : option === question.submittedAnswer &&
+                          option !== question.correctAnswer
                         ? "bg-red-500/30 "
                         : "border"
                     }`}
                   >
-                    {option.text === question.correctAnswer && (
+                    {option === question.correctAnswer && (
                       <Check className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
                     )}
-                    {option.text === question.submittedAnswer &&
-                      option.text !== question.correctAnswer && (
+                    {option === question.submittedAnswer &&
+                      option !== question.correctAnswer && (
                         <X className="h-4 w-4 text-red-500 mr-2 flex-shrink-0" />
                       )}
-                    {option.text !== question.correctAnswer &&
-                      option.text !== question.submittedAnswer && (
+                    {option !== question.correctAnswer &&
+                      option !== question.submittedAnswer && (
                         <div className="w-4 h-4 mr-2 flex-shrink-0" />
                       )}
-                    <span>{option.text}</span>
+                    <span>{option}</span>
                   </div>
                 ))}
               </div>

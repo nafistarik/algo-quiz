@@ -1,9 +1,8 @@
-"use client"
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import Link from "next/link";
 
 interface QuestionFormProps {
   formData: {
@@ -18,6 +17,7 @@ interface QuestionFormProps {
   onCorrectAnswerChange: (value: string) => void;
   onSubmit: () => void;
   onCancel: () => void;
+  editMode?: boolean;
 }
 
 export function QuestionForm({
@@ -28,7 +28,8 @@ export function QuestionForm({
   onOptionChange,
   onCorrectAnswerChange,
   onSubmit,
-  onCancel
+  onCancel,
+  editMode,
 }: QuestionFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,16 +51,16 @@ export function QuestionForm({
 
       <div className="space-y-4">
         <Label>Answer Options</Label>
-        <RadioGroup 
-          value={formData.correctAnswer} 
-          onValueChange={onCorrectAnswerChange} 
+        <RadioGroup
+          value={formData.correctAnswer}
+          onValueChange={onCorrectAnswerChange}
           className="space-y-3"
         >
           {formData.options.map((option, index) => (
             <div key={index} className="flex items-center space-x-2">
-              <RadioGroupItem 
-                value={option} 
-                id={`option-${index}`} 
+              <RadioGroupItem
+                value={option}
+                id={`option-${index}`}
                 disabled={option.trim() === ""}
               />
               <div className="flex-1">
@@ -76,15 +77,26 @@ export function QuestionForm({
       </div>
 
       <div className="flex gap-2">
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Submitting..." : isEditing ? "Update Question" : "Add Question"}
+        <Button type="submit" disabled={isSubmitting || isEditing}>
+          {isSubmitting
+            ? "Submitting..."
+            : isEditing
+            ? "Updating..."
+            : editMode
+            ? "Update Question"
+            : "Add Question"}
         </Button>
-        {isEditing && (
-          <Button 
-            type="button" 
+        <Link href="/admin">
+          <Button>
+            {!isSubmitting && !isEditing && !editMode && "Finish Quiz"}
+          </Button>
+        </Link>
+        {editMode && (
+          <Button
+            type="button"
             variant="outline"
             onClick={onCancel}
-            disabled={isSubmitting}
+            disabled={isSubmitting || isEditing}
           >
             Cancel
           </Button>

@@ -1,25 +1,24 @@
 /* eslint-disabled */
 
-import React from "react";
 import { Card, CardContent, CardFooter } from "../ui/card";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Quiz } from "@/lib/types";
+import { ChartArea, Target } from "lucide-react";
 
 export default function QuizCard({ quiz }: { quiz: Quiz }) {
-
   return (
     <div>
       <Card key={quiz.id} className="overflow-hidden h-full flex flex-col">
         {quiz.thumbnail ? (
-          <div className="aspect-[5/3]">
+          <div className="aspect-[6/4] overflow-hidden relative">
             <Image
               src={quiz.thumbnail}
               alt="Quiz Thumbnail"
               height={1000}
               width={1000}
-              className="h-full w-full object-cover hover:scale-105 transition-all duration-500 ease-in-out"
+              className="h-full w-full object-cover hover:scale-110 transition-all duration-500 ease-in-out"
             />
           </div>
         ) : (
@@ -35,7 +34,7 @@ export default function QuizCard({ quiz }: { quiz: Quiz }) {
               </h3>
               <p className="text-sm text-muted-foreground">
                 {quiz.description.length > 120
-                  ? `${quiz.description.substring(0, 120)}...`
+                  ? `${quiz.description.substring(0, 90)}...`
                   : quiz.description}
               </p>
             </div>
@@ -43,12 +42,26 @@ export default function QuizCard({ quiz }: { quiz: Quiz }) {
 
           <div>
             <div className="flex items-center justify-between text-sm px-4 pb-2">
-              <span>{quiz.questionCount} questions</span>
-              <span>{quiz.questionCount} mins</span>
+              <span>{quiz.total_questions} questions</span>
+              <span>{quiz.total_questions} mins</span>
             </div>
             <CardFooter className="p-4 pt-0">
               <Button className="w-full" asChild>
-                <Link href={(quiz.totalAttempts ?? 0) > 0 ? `/result/${quiz.id}` : `/quiz/${quiz.id}` }>{(quiz.totalAttempts ?? 0) > 0 ? "View Result" : "Start Quiz"}</Link>
+                <Link
+                  href={
+                    quiz.is_attempted
+                      ? `/result/${quiz.id}`
+                      : `/quiz/${quiz.id}`
+                  }
+                >
+                  {quiz.is_attempted ? (
+                    <span className=" flex items-center gap-2 "><ChartArea />View Result</span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <Target />
+                      Start Quiz</span>
+                  )}
+                </Link>
               </Button>
             </CardFooter>
           </div>

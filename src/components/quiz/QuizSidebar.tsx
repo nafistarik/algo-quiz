@@ -1,20 +1,28 @@
-/* eslint-disable */
-
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { Clock } from "lucide-react"
-import { Progress } from "@/components/ui/progress"
-import { formatTime } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import { Clock } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
+import { formatTime } from "@/lib/utils";
+import { Quiz } from "@/lib/types";
 
 interface QuizSidebarProps {
-  quiz: any
-  timeLeft: number
-  currentQuestionIndex: number
-  totalQuestions: number
-  answeredCount: number
+  quiz: Quiz;
+  timeLeft: number;
+  currentQuestionIndex: number;
+  totalQuestions: number;
+  answeredCount: number;
+  onHandleSubmit: () => void;
+  quizSubmitLoading: boolean;
 }
 
-export function QuizSidebar({ quiz, timeLeft, currentQuestionIndex, totalQuestions, answeredCount }: QuizSidebarProps) {
+export function QuizSidebar({
+  quiz,
+  timeLeft,
+  currentQuestionIndex,
+  totalQuestions,
+  answeredCount,
+  onHandleSubmit,
+  quizSubmitLoading,
+}: QuizSidebarProps) {
   const progress = (answeredCount / totalQuestions) * 100;
 
   return (
@@ -32,7 +40,10 @@ export function QuizSidebar({ quiz, timeLeft, currentQuestionIndex, totalQuestio
               {formatTime(timeLeft)}
             </span>
           </div>
-          <Progress value={(timeLeft / (totalQuestions * 60)) * 100} className="h-2" />
+          <Progress
+            value={(timeLeft / (totalQuestions * 60)) * 100}
+            className="h-2"
+          />
         </div>
 
         <div className="space-y-2">
@@ -63,11 +74,16 @@ export function QuizSidebar({ quiz, timeLeft, currentQuestionIndex, totalQuestio
       </div>
 
       <div className="mt-auto py-6">
-        <Button className="w-full" asChild>
-          <Link href={`/result/${quiz.id}`}>Submit Quiz</Link>
+        <Button
+          className="w-full"
+          // asChild
+          onClick={onHandleSubmit}
+          disabled={quizSubmitLoading}
+        >
+          {quizSubmitLoading ? "Submitting" : "Submit Quiz"}
         </Button>
       </div>
+      
     </div>
-  )
+  );
 }
-

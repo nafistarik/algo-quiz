@@ -9,16 +9,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { useState } from "react";
-import { defaultUser } from "@/lib/data";
 import { ModeToggle } from "./ModeToggle";
 import logo from "@/assets/images/home/logo.png";
 import logoMobile from "@/assets/images/home/logoMobile.png";
 import Image from "next/image";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { removeUser, selectUser } from "@/redux/slice/userSlice";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export function SiteHeader() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const user = defaultUser;
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const handleLogOut = () => {
+    dispatch(removeUser());
+    toast.success("Logout successfully");
+    router.push("/login");
+  };
+  const user = useAppSelector(selectUser);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-borderColor backdrop-blur">
@@ -41,7 +49,7 @@ export function SiteHeader() {
         </Link>
         <div className="flex items-center gap-4">
           <ModeToggle />
-          {isLoggedIn ? (
+          {user?.user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -49,38 +57,47 @@ export function SiteHeader() {
                   className="relative h-10 w-10 rounded-full"
                 >
                   <Avatar className="h-10 w-10">
-                    <AvatarImage src={user?.avatar} alt={user?.name} />
+                    <AvatarImage
+                      src={user?.user?.avatar}
+                      alt={user?.user?.full_name}
+                    />
                     <AvatarFallback>
-                      {user?.name
+                      {user?.user?.full_name
                         .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
+                        .slice(0, 2)
+                        .map((n: string) => n[0])
+                        .join("")
+                        .toLocaleUpperCase()}
                     </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link href="/profile">Profile</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/admin">Admin Dashboard</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setIsLoggedIn(false)}>
+                {user?.user?.role === "admin" ? (
+                  <>
+                    <DropdownMenuItem asChild>
+                      <Link href="/profile">Profile</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/admin">Dashboard</Link>
+                    </DropdownMenuItem>
+                  </>
+                ) : (
+                  <DropdownMenuItem asChild>
+                    <Link href="/profile">Profile</Link>
+                  </DropdownMenuItem>
+                )}
+                <DropdownMenuItem onClick={handleLogOut}>
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                asChild
-                onClick={() => setIsLoggedIn(true)}
-              >
+              <Button variant="ghost" asChild>
                 <Link href="/login">Login</Link>
               </Button>
-              <Button asChild onClick={() => setIsLoggedIn(true)}>
+              <Button asChild>
                 <Link href="/register">Sign Up</Link>
               </Button>
             </div>

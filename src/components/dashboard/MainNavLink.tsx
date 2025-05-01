@@ -3,11 +3,14 @@
 // import { removeUser } from "@/redux/slice/userSlice";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoLogOutOutline } from "react-icons/io5";
 // import { useDispatch } from "react-redux";
 // import { toast } from "sonner";
 import logo from "@/assets/images/home/logo.png";
+import { useAppDispatch } from "@/redux/hooks";
+import { removeUser } from "@/redux/slice/userSlice";
+import { toast } from "sonner";
 export default function MainNavLink({
   navLink,
 }: {
@@ -28,14 +31,13 @@ export default function MainNavLink({
     return cleanPathname.startsWith(cleanHref);
   };
   
-  // const router = useRouter();
-  // const dispatch = useDispatch();
-  // const handleLogout = async () => {
-  //   dispatch(removeUser());
-
-  //   router.push("/login");
-  //   toast.success("User logout successfully");
-  // };
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const handleLogOut = () => {
+    dispatch(removeUser());
+    toast.success("Logout successfully");
+    router.push("/login");
+  };
 
   return (
     <div className="flex flex-col min-h-screen py-6 relative bg-muted">
@@ -59,7 +61,7 @@ export default function MainNavLink({
               <Link
                 key={link.name}
                 href={link.href}
-                className={`flex items-center gap-3 px-4 py-3 font-normal text-base rounded-xl ${
+                className={`flex items-center gap-3 px-4 py-3 font-normal text-base rounded-xl transition-all duration-150 ease-in ${
                   isActive(link.href)
                     ? "bg-primary text-white"
                     : "hover:bg-borderColor"
@@ -76,8 +78,8 @@ export default function MainNavLink({
       </nav>
       <div className="mt-auto px-8 py-8 space-y-1">
         <button
-          // onClick={handleLogout}
-          className="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer text-foreground bg-background w-full font-medium text-base"
+          onClick={handleLogOut}
+          className="flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer text-foreground hover:text-primary transition-all duration-100 ease-in bg-background w-full font-medium text-base"
         >
           <IoLogOutOutline className="min-w-6 min-h-6" />
           Log Out

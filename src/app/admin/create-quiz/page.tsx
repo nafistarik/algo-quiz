@@ -1,4 +1,3 @@
-"use client";
 import CreateQuizPage from "./_components/CreateQuizPage";
 
 export default function QuizPage() {

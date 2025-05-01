@@ -2,14 +2,7 @@
 
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -18,32 +11,36 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { MoreHorizontal, Plus, Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { DeleteQuizDialog } from "./DeleteQuizDialog";
-import { EditQuizDialog } from "./EditQuizDialog";
-import EmptyStateMessage from "../../../components/EmptyStateMessage";
+import { useGetAllQuizQuery } from "@/redux/features/quizManagementApi";
+import Loading from "@/components/Loading";
+import ErrorMessage from "@/components/ErrorMessage";
+import AllQuizzes from "./AllQuizzes";
 
-interface QuizListProps {
-  quizzes: any[];
-}
-
-export function QuizList({ quizzes }: QuizListProps) {
+export function QuizList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
-  const [editingQuiz, setEditingQuiz] = useState<any | null>(null);
-  const [deletingQuiz, setDeletingQuiz] = useState<any | null>(null);
 
-  const filteredQuizzes = quizzes.filter((quiz) => {
+  const {
+    data: quizList,
+    isLoading: quizListLoading,
+    error: quizListError,
+  } = useGetAllQuizQuery({});
+
+  {quizListLoading && <Loading />}
+
+  if (quizListError) {
+    const errorMessage =
+      "data" in quizListError
+        ? (quizListError.data as { message?: string })?.message ??
+          "An error occurred"
+        : "An error occurred";
+    return <ErrorMessage>{errorMessage}</ErrorMessage>;
+  }
+
+  const filteredQuizzes = quizList?.filter((quiz: any) => {
     const matchesSearch = quiz.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
@@ -53,7 +50,8 @@ export function QuizList({ quizzes }: QuizListProps) {
   });
 
   return (
-    <div>
+    <main className="w-full">
+      <h1 className="text-3xl font-bold mb-8">Quiz Dashboard</h1>
       <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
         <div className="flex items-center gap-2 w-full sm:w-auto">
           <div className="relative w-full sm:w-64">
@@ -83,85 +81,7 @@ export function QuizList({ quizzes }: QuizListProps) {
           </Link>
         </Button>
       </div>
-
-      <div className="border rounded-lg w-full overflow-x-auto">
-        <Table className="w-full">
-          <TableHeader>
-            <TableRow>
-              <TableHead>Title</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Created</TableHead>
-              <TableHead className="w-[80px]">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {filteredQuizzes.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={5} className="text-center pt-8">
-                  <EmptyStateMessage message="No quizzes available!" />
-                </TableCell>
-              </TableRow>
-            ) : (
-              filteredQuizzes.map((quiz) => (
-                <TableRow key={quiz.id}>
-                  <TableCell className="font-medium">{quiz.title}</TableCell>
-                  <TableCell>
-                    <Badge
-                      variant={
-                        quiz.status === "published" ? "default" : "outline"
-                      }
-                    >
-                      {quiz.status === "published" ? "Published" : "Draft"}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    {new Date(quiz.createdAt).toLocaleDateString()}
-                  </TableCell>
-                  <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          className="h-8 w-8 p-0 hover:bg-muted"
-                        >
-                          <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => setEditingQuiz(quiz)}>
-                          <span className="ml-1 mr-[2px]">✎</span> Edit
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          onClick={() => setDeletingQuiz(quiz)}
-                          className="text-red-500"
-                        >
-                          <span>🥡</span>Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
-                  </TableCell>
-                </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </div>
-
-      {editingQuiz && (
-        <EditQuizDialog
-          quiz={editingQuiz}
-          open={!!editingQuiz}
-          onOpenChange={() => setEditingQuiz(null)}
-        />
-      )}
-
-      {deletingQuiz && (
-        <DeleteQuizDialog
-          quiz={deletingQuiz}
-          open={!!deletingQuiz}
-          onOpenChange={() => setDeletingQuiz(null)}
-        />
-      )}
-    </div>
+      <AllQuizzes quizzes={filteredQuizzes} />
+    </main>
   );
 }

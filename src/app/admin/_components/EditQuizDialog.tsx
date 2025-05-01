@@ -1,45 +1,71 @@
 /* eslint-disable */
+"use client";
 
-"use client"
-
-import type React from "react"
-
-import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useUpdateQuizMutation } from "@/redux/features/quizManagementApi";
+import { toast } from "sonner";
 
 interface EditQuizDialogProps {
-  quiz: any
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  quiz: any;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
-export function EditQuizDialog({ quiz, open, onOpenChange }: EditQuizDialogProps) {
-  const [title, setTitle] = useState(quiz.title)
-  const [description, setDescription] = useState(quiz.description)
-  const [status, setStatus] = useState(quiz.status)
-  const [isLoading, setIsLoading] = useState(false)
+export function EditQuizDialog({
+  quiz,
+  open,
+  onOpenChange,
+}: EditQuizDialogProps) {
+  const [title, setTitle] = useState(quiz.title);
+  const [description, setDescription] = useState(quiz.description);
+  const [status, setStatus] = useState(quiz.status);
+
+  const [updateQuiz, { isLoading }] = useUpdateQuizMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
     const payload = {
       status,
       title,
-      description
+      description,
+    };
+    try {
+      const response = await updateQuiz({
+        id: quiz?.id,
+        data: payload,
+      }).unwrap();
+      if (response) {
+        toast.success("Quiz updated successfully!");
+        onOpenChange(false);
+      }
+    } catch (error: any) {
+      if (error.data?.message) {
+        toast.error(error.data.message);
+      } else if (error.status === 401) {
+        toast.error("Unauthorized - Please login again");
+      } else {
+        toast.error("An unexpected error occurred");
+      }
     }
-    console.log("Submitting quiz data:", payload)
-    console.log(quiz?.id)
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false)
-      onOpenChange(false)
-    }, 1000)
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -50,11 +76,21 @@ export function EditQuizDialog({ quiz, open, onOpenChange }: EditQuizDialogProps
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div className="space-y-2">
             <Label htmlFor="title">Title</Label>
-            <Input id="title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <Input
+              id="title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="description">Description</Label>
-            <Textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} rows={3} />
+            <Textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows={3}
+            />
           </div>
           <div className="space-y-2">
             <Label htmlFor="status">Status</Label>
@@ -69,7 +105,11 @@ export function EditQuizDialog({ quiz, open, onOpenChange }: EditQuizDialogProps
             </Select>
           </div>
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onOpenChange(false)}
+            >
               Cancel
             </Button>
             <Button type="submit" disabled={isLoading}>
@@ -79,6 +119,5 @@ export function EditQuizDialog({ quiz, open, onOpenChange }: EditQuizDialogProps
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
-

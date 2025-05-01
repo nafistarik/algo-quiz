@@ -1,6 +1,6 @@
-import { HomeHero } from "@/components/home/HomeHero"
-import { PopularQuizzes } from "@/components/home/PopularQuizzes"
-import { SiteHeader } from "@/components/SiteHeader"
+import { HomeHero } from "@/components/home/HomeHero";
+import { PopularQuizzes } from "@/components/home/PopularQuizzes";
+import { SiteHeader } from "@/components/SiteHeader";
 
 export default function Home() {
   return (
@@ -12,6 +12,7 @@ export default function Home() {
           <PopularQuizzes />
         </div>
       </main>
+
     </div>
-  )
+  );
 }

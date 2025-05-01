@@ -4,6 +4,8 @@ import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import ReduxProvider from "@/redux/ReduxProvider";
+import { ToastProvider } from "@/components/ToastProvider";
+import CustomCursor from "@/components/CustomCursor";
 
 const ubuntu = Ubuntu({ subsets: ["latin"], weight: ["500", "700"] });
 
@@ -26,7 +28,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ReduxProvider>{children}</ReduxProvider>
+          <ReduxProvider>
+            {children}
+            <CustomCursor />
+            <ToastProvider />
+          </ReduxProvider>
         </ThemeProvider>
       </body>
     </html>
